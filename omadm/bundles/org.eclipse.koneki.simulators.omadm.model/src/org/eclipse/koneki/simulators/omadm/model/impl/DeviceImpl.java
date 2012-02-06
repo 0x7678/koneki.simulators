@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.koneki.simulators.omadm.model.impl;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -183,7 +186,7 @@ public class DeviceImpl extends EObjectImpl implements Device {
 			if (newDeviceIdType != DEVICE_ID_TYPE_EDEFAULT) {
 				setDeviceId(deviceIdType.getName() + ":" + DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
 			} else {
-				setDeviceId(DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
+				// setDeviceId(DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
 			}
 			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.SET, OMADMSimulatorPackage.DEVICE__DEVICE_ID_TYPE, oldDeviceIdType, deviceIdType));
@@ -245,7 +248,7 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public String getDeviceId() {
-		Node devIdNode = NodeHelpers.findFirstNode(getTree(), "DevId");
+		Node devIdNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DevInfo"), "DevId");
 		if (devIdNode != null) {
 			deviceId = devIdNode.getData();
 			return deviceId;
@@ -260,9 +263,8 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public void setDeviceId(String newDeviceId) {
-		Node devIdNode;
 		String oldDeviceId = deviceId;
-		devIdNode = NodeHelpers.findFirstNode(getTree(), "DevId");
+		Node devIdNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DevInfo"), "DevId");
 		if (devIdNode != null) {
 			if (!newDeviceId.equals(oldDeviceId)) {
 				devIdNode.setData(newDeviceId);
@@ -279,11 +281,11 @@ public class DeviceImpl extends EObjectImpl implements Device {
 
 				if (newDeviceIdType != null) {
 					setDeviceIdType(newDeviceIdType);
+				} else {
+					setDeviceIdType(DeviceIdType.FREE);
 				}
-			}
-			else
-			{
-				setDeviceIdType(DEVICE_ID_TYPE_EDEFAULT);
+			} else {
+				setDeviceIdType(DeviceIdType.FREE);
 			}
 		}
 
@@ -298,7 +300,7 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public String getLogin() {
-		Node loginNode = NodeHelpers.findFirstNode(getTree(), "AuthName");
+		Node loginNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAuth"), "AuthName");
 		if (loginNode != null) {
 			login = loginNode.getData();
 			return login;
@@ -313,9 +315,8 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public void setLogin(String newLogin) {
-		Node loginNode;
 		String oldLogin = login;
-		loginNode = NodeHelpers.findFirstNode(getTree(), "AuthName");
+		Node loginNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAuth"), "AuthName");
 		if (loginNode != null) {
 			if (!newLogin.equals(oldLogin)) {
 				loginNode.setData(newLogin);
@@ -334,7 +335,7 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public String getPassword() {
-		Node passwordNode = NodeHelpers.findFirstNode(getTree(), "AuthSecret");
+		Node passwordNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAuth"), "AuthSecret");
 		if (passwordNode != null) {
 			password = passwordNode.getData();
 			return password;
@@ -349,9 +350,8 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public void setPassword(String newPassword) {
-		Node passwordNode;
 		String oldPassword = password;
-		passwordNode = NodeHelpers.findFirstNode(getTree(), "AuthSecret");
+		Node passwordNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAuth"), "AuthSecret");
 		if (passwordNode != null) {
 			if (!newPassword.equals(oldPassword)) {
 				passwordNode.setData(newPassword);
@@ -370,7 +370,7 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public String getServerUrl() {
-		Node serverIDNode = NodeHelpers.findFirstNode(getTree(), "ServerID");
+		Node serverIDNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAddr"), "Addr");
 		if (serverIDNode != null) {
 			serverUrl = serverIDNode.getData();
 			return serverUrl;
@@ -386,15 +386,41 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	 */
 	@Override
 	public void setServerUrl(String newServerUrl) {
-		Node serverIDNode;
 		String oldServerURL = serverUrl;
+		serverUrl = newServerUrl;
 
-		serverIDNode = NodeHelpers.findFirstNode(getTree(), "ServerID");
-		if (serverIDNode != null) {
-			if (!newServerUrl.equals(oldServerURL)) {
-				serverIDNode.setData(newServerUrl);
+		Node addrNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAddr"), "Addr");
+		Node addrTypeNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAddr"), "AddrType");
+		Node portNumberNode = NodeHelpers.findFirstNode(NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DMAcc/AppAddr"), "Port"),
+				"PortNbr");
+
+		try {
+			URL newUrl = new URL(newServerUrl);
+			int newPortNumber = newUrl.getPort();
+			if (newPortNumber == -1) {
+				newPortNumber = 80;
 			}
-			serverUrl = newServerUrl;
+			String newServerName = newUrl.getHost();
+			String newSubDirectories = newUrl.getPath();
+			String newProtocol = newUrl.getProtocol();
+
+			if (!newServerUrl.equals(oldServerURL)) {
+				if (addrNode != null) {
+					addrNode.setData(newServerUrl);
+				}
+
+				if (addrTypeNode != null) {
+					addrTypeNode.setData(newProtocol + "://" + newServerName + newSubDirectories);
+				}
+
+				if (portNumberNode != null) {
+					portNumberNode.setData(String.valueOf(newPortNumber));
+				}
+			}
+		} catch (MalformedURLException e) {
+			addrNode.setData("");
+			addrTypeNode.setData("");
+			portNumberNode.setData("80");
 		}
 
 		if (eNotificationRequired())

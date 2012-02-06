@@ -34,6 +34,7 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 
 	private static final String AUTH_SECRET = "AuthSecret"; //$NON-NLS-1$
 	private static final String AUTH_NAME = "AuthName"; //$NON-NLS-1$
+	private static final String APP_AUTH = "./DMAcc/AppAuth"; //$NON-NLS-1$
 
 	private final DMBasicSimulator dmSimulator;
 	private final URI server;
@@ -88,8 +89,8 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 			/*
 			 * Create a Base64 code with the user name and user password value
 			 */
-			String userName = NodeHelpers.findFirstNode(tree, AUTH_NAME).getData();
-			String userPassword = NodeHelpers.findFirstNode(tree, AUTH_SECRET).getData();
+			String userName = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_NAME).getData();
+			String userPassword = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_SECRET).getData();
 			String userAuth = userName + ":" + userPassword; //$NON-NLS-1$
 			byte[] encoded = Base64.encodeBase64(userAuth.getBytes());
 

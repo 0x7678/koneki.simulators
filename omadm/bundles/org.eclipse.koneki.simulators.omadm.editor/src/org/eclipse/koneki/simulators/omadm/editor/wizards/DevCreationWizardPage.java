@@ -75,10 +75,6 @@ public class DevCreationWizardPage extends WizardPage implements IWizardPage {
 		deviceIDText = new Text(devCreationComposite, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 0).applyTo(deviceIDText);
 
-		label = new Label(devCreationComposite, SWT.NONE);
-		label.setText(Messages.Associate_Label);
-		GridDataFactory.fillDefaults().grab(false, false).span(0, 0).applyTo(label);
-
 		hookListeners();
 		setControl(devCreationComposite);
 	}

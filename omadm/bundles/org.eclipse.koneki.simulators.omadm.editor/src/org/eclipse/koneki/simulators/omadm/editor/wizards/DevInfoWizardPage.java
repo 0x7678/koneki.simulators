@@ -30,6 +30,7 @@ public class DevInfoWizardPage extends WizardPage implements IWizardPage {
 	private static final String LANG = "Lang"; //$NON-NLS-1$
 	private static final String MOD = "Mod"; //$NON-NLS-1$
 	private static final String MAN = "Man"; //$NON-NLS-1$
+	private static final String DEV_INFO = "./DevInfo"; //$NON-NLS-1$
 
 	private Device device;
 	private Text devIdText;
@@ -125,15 +126,16 @@ public class DevInfoWizardPage extends WizardPage implements IWizardPage {
 	public void setDevice(final Device device) {
 		this.device = device;
 		devIdText.setText(device.getDeviceId().replace(device.getDeviceIdType().getName() + ":", "")); //$NON-NLS-1$ //$NON-NLS-2$
-		modText.setText(NodeHelpers.findFirstNode(device.getTree(), MOD).getData());
-		manText.setText(NodeHelpers.findFirstNode(device.getTree(), MAN).getData());
+		modText.setText(NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), MOD).getData());
+		manText.setText(NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), MAN).getData());
+		langText.setText(NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), LANG).getData());
 	}
 
 	public Device getDevice() {
-		NodeHelpers.findFirstNode(device.getTree(), MAN).setData(getMan());
-		NodeHelpers.findFirstNode(device.getTree(), MOD).setData(getMod());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), MAN).setData(getMan());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), MOD).setData(getMod());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_INFO), LANG).setData(getLang());
 		device.setDeviceId(device.getDeviceIdType().getName() + ":" + getDevId()); //$NON-NLS-1$
-		NodeHelpers.findFirstNode(device.getTree(), LANG).setData(getLang());
 		return device;
 	}
 

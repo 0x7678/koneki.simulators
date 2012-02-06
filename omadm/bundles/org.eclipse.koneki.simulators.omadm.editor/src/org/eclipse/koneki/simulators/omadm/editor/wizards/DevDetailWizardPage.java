@@ -24,8 +24,11 @@ import org.eclipse.swt.widgets.Text;
 
 public class DevDetailWizardPage extends WizardPage implements IWizardPage {
 
+	private static final String HW_V = "HwV"; //$NON-NLS-1$
 	private static final String SW_V = "SwV"; //$NON-NLS-1$
 	private static final String FW_V = "FwV"; //$NON-NLS-1$
+	private static final String OEM = "OEM"; //$NON-NLS-1$
+	private static final String DEV_DETAIL = "./DevDetail"; //$NON-NLS-1$
 
 	private Device device;
 	private Text devTypText;
@@ -109,8 +112,10 @@ public class DevDetailWizardPage extends WizardPage implements IWizardPage {
 
 	public Device getDevice() {
 
-		NodeHelpers.findFirstNode(device.getTree(), FW_V).setData(getFwV());
-		NodeHelpers.findFirstNode(device.getTree(), SW_V).setData(getSwV());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_DETAIL), FW_V).setData(getFwV());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_DETAIL), SW_V).setData(getSwV());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_DETAIL), HW_V).setData(getHwV());
+		NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), DEV_DETAIL), OEM).setData(getOEM());
 		device.setDeviceIdType(DeviceIdType.getByName(devTypText.getText()));
 		return device;
 	}

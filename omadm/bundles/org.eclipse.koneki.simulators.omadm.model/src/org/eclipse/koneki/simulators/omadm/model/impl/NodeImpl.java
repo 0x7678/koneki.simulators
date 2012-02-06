@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.koneki.simulators.omadm.model.impl;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -469,20 +471,93 @@ public class NodeImpl extends EObjectImpl implements Node {
 		data = newData;
 
 		if (oldData != null && !oldData.equals(newData)) {
+
 			Device device = (Device) this.getRoot().eContainer();
-			// If this is the ./DevInfo/DevId node, then we update the deviceId field of the root Device
-			if (NodeHelpers.findFirstNode(this.getRoot(), "DevId") == this) {
+			if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DevInfo"), "DevId") == this) {
 				device.setDeviceId(newData);
-			}
-			if (NodeHelpers.findFirstNode(this.getRoot(), "ServerID") == this) {
-				device.setServerUrl(newData);
-			}
-			if (NodeHelpers.findFirstNode(this.getRoot(), "AuthName") == this) {
+			} else if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAuth"), "AuthName") == this) {
 				device.setLogin(newData);
-			}
-			if (NodeHelpers.findFirstNode(this.getRoot(), "AuthSecret") == this) {
+			} else if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAuth"), "AuthSecret") == this) {
 				device.setPassword(newData);
+			} else if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "AddrType") == this) {
+
+				Node AddrNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "Addr");
+
+				try {
+					URL oldUrl = new URL(AddrNode.getData());
+					int oldPortNumber = oldUrl.getPort();
+					if (oldPortNumber == -1) {
+						oldPortNumber = 80;
+					}
+
+					URL newUrl = new URL(newData);
+					int newPortNumber = newUrl.getPort();
+					if (newPortNumber == -1) {
+						newPortNumber = 80;
+					}
+					String newServerName = newUrl.getHost();
+					String newPath = newUrl.getPath();
+					String newProtocol = newUrl.getProtocol();
+
+					if (oldPortNumber != 80) {
+						AddrNode.setData(newProtocol + "://" + newServerName + ":" + oldPortNumber + newPath);
+					} else {
+						AddrNode.setData(newProtocol + "://" + newServerName + newPath);
+					}
+
+				} catch (MalformedURLException e) {
+				}
+
+			} else if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "Addr") == this) {
+				try {
+					URL newUrl = new URL(newData);
+					int newPortNumber = newUrl.getPort();
+					if (newPortNumber == -1) {
+						newPortNumber = 80;
+					}
+					String newServerName = newUrl.getHost();
+					String newPath = newUrl.getPath();
+					String newProtocol = newUrl.getProtocol();
+
+					if (newPortNumber != 80) {
+						device.setServerUrl(newProtocol + "://" + newServerName + ":" + newPortNumber + newPath);
+					} else {
+						device.setServerUrl(newProtocol + "://" + newServerName + newPath);
+					}
+
+				} catch (MalformedURLException e) {
+					device.setServerUrl("");
+				}
+			} else if (NodeHelpers.findFirstNode(NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "Port"), "PortNbr") == this) {
+
+				Node AddrNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "Addr");
+
+				try {
+
+					URL oldUrl = new URL(AddrNode.getData());
+					int oldPortNumber = oldUrl.getPort();
+					if (oldPortNumber == -1) {
+						oldPortNumber = 80;
+					}
+					String oldServerName = oldUrl.getHost();
+					String oldPath = oldUrl.getPath();
+					String oldProtocol = oldUrl.getProtocol();
+
+					int newPortNumber = 80;
+					try {
+						newPortNumber = Integer.valueOf(newData);
+					} catch (Exception e) {
+					}
+
+					if (newPortNumber != 80) {
+						AddrNode.setData(oldProtocol + "://" + oldServerName + ":" + newPortNumber + oldPath);
+					} else {
+						AddrNode.setData(oldProtocol + "://" + oldServerName + oldPath);
+					}
+				} catch (MalformedURLException e) {
+				}
 			}
+
 		}
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, OMADMSimulatorPackage.NODE__DATA, oldData, data));

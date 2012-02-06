@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.koneki.simulators.omadm.model.util;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.Node;
 
@@ -35,6 +38,31 @@ public class DeviceHelpers {
 
 		String[] ret = { deviceIdType, deviceIdValue };
 		return ret;
+	}
+
+	/**
+	 * Checks if the serverURL is Valid.
+	 * 
+	 * @param device
+	 *            the device to check
+	 * @return true if the serverURL is valid, else false
+	 */
+	public static final boolean isValidServerURL(final Device device) {
+		if (device != null) {
+			final String serverURL = device.getServerUrl();
+			if (serverURL != null) {
+				try {
+					new URL(serverURL);
+					return true;
+				} catch (MalformedURLException e) {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	/**

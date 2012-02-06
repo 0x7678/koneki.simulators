@@ -158,7 +158,56 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 			result &= validateDevice_deviceIdMustBeValid(device, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateDevice_rootNodeCategoryMustBeValid(device, diagnostics, context);
+		/*
+		 * Add new tests validator
+		 */
+		if (result || diagnostics != null)
+			result &= validateDevice_serverURLMustBeValid(device, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateDevice_loginMustBeValid(device, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateDevice_passwordURLMustBeValid(device, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * @param device
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
+	public boolean validateDevice_passwordURLMustBeValid(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	/**
+	 * @param device
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
+	public boolean validateDevice_loginMustBeValid(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	/**
+	 * Validates the serverURLMustBeValid constraint of '<em>Device</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public boolean validateDevice_serverURLMustBeValid(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		assert (device != null);
+
+		boolean isValid = DeviceHelpers.isValidServerURL(device);
+
+		if (!isValid) {
+			diagnostics.add(createErrorDiagnostic(createDeviceMessage(device, context, "URL server", "The url server must be valid."),
+					new Object[] { device }));
+		}
+
+		return isValid;
 	}
 
 	/**

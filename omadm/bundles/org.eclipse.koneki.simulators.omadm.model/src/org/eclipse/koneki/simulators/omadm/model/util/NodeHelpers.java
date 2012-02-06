@@ -42,6 +42,8 @@ public class NodeHelpers {
 		}
 	}
 
+	
+	
 	private static boolean isValidRootNodeName(final String nodeName) {
 		return nodeName != null && nodeName.matches("^.$");
 	}
@@ -389,58 +391,46 @@ public class NodeHelpers {
 
 	public static Node initTree() {
 		Node root = NodeHelpers.initRoot();
-		/*
-		 * After the root, all important node are also created
-		 */
 
-		/*
-		 * This node contains some "useless" information about the device
-		 */
 		Node devInfoNode = NodeHelpers.initNode("DevInfo", root);
-
-		/*
-		 * This node contains the ID of the device It identify the device one the OMA-DM platform
-		 */
 		NodeHelpers.initLeaf("DevId", "text/plain", "", NodeFormat.CHR, devInfoNode);
-		/*
-		 * This node contains some "useless" information about the device
-		 */
 		NodeHelpers.initLeaf("DwV", "text/plain", "", NodeFormat.CHR, devInfoNode);
 		NodeHelpers.initLeaf("Man", "text/plain", "", NodeFormat.CHR, devInfoNode);
 		NodeHelpers.initLeaf("Mod", "text/plain", "", NodeFormat.CHR, devInfoNode);
 		NodeHelpers.initLeaf("Lang", "text/plain", "", NodeFormat.CHR, devInfoNode);
 
-		/*
-		 * Just some details about the device
-		 */
 		Node devDetailNode = NodeHelpers.initNode("DevDetail", root);
-
-		/*
-		 * The firmware version of the device
-		 */
 		NodeHelpers.initLeaf("FwV", "text/plain", "", NodeFormat.CHR, devDetailNode);
-
-		/*
-		 * The software version of the device
-		 */
 		NodeHelpers.initLeaf("SwV", "text/plain", "", NodeFormat.CHR, devDetailNode);
-
-		/*
-		 * Another node, not realy important
-		 */
+		NodeHelpers.initLeaf("HwV", "text/plain", "", NodeFormat.CHR, devDetailNode);
+		NodeHelpers.initLeaf("OEM", "text/plain", "", NodeFormat.CHR, devDetailNode);
 		NodeHelpers.initLeaf("lrgObj", "text/plain", "false", NodeFormat.BOOL, devDetailNode);
+		NodeHelpers.initLeaf("DevTyp", "text/plain", "", NodeFormat.CHR, devDetailNode);
+
+		Node URINode = NodeHelpers.initNode("URI", devDetailNode);
+		NodeHelpers.initLeaf("MaxTotLen", "text/plain", "", NodeFormat.CHR, URINode);
+		NodeHelpers.initLeaf("MaxSegLen", "text/plain", "false", NodeFormat.BOOL, URINode);
+		NodeHelpers.initLeaf("MaxDepth", "text/plain", "", NodeFormat.CHR, URINode);
 
 		Node DMAccNode = NodeHelpers.initNode("DMAcc", root);
-		Node AppAuthNode = NodeHelpers.initNode("AppAuth", DMAccNode);
-		Node DefaultNode = NodeHelpers.initNode("Default", AppAuthNode);
-
 		NodeHelpers.initLeaf("ServerID", "text/plain", "", NodeFormat.CHR, DMAccNode);
 		NodeHelpers.initLeaf("AppID", "text/plain", "", NodeFormat.CHR, DMAccNode);
 
-		NodeHelpers.initLeaf("AuthType", "text/plain", "", NodeFormat.CHR, DefaultNode);
-		NodeHelpers.initLeaf("AuthData", "text/plain", "", NodeFormat.CHR, DefaultNode);
-		NodeHelpers.initLeaf("AuthName", "text/plain", "", NodeFormat.CHR, DefaultNode);
-		NodeHelpers.initLeaf("AuthSecret", "text/plain", "", NodeFormat.CHR, DefaultNode);
+		Node AppAuthNode = NodeHelpers.initNode("AppAuth", DMAccNode);
+		Node DefaultAuthNode = NodeHelpers.initNode("Default", AppAuthNode);
+		NodeHelpers.initLeaf("AuthType", "text/plain", "", NodeFormat.CHR, DefaultAuthNode);
+		NodeHelpers.initLeaf("AuthData", "text/plain", "", NodeFormat.CHR, DefaultAuthNode);
+		NodeHelpers.initLeaf("AuthName", "text/plain", "", NodeFormat.CHR, DefaultAuthNode);
+		NodeHelpers.initLeaf("AuthSecret", "text/plain", "", NodeFormat.CHR, DefaultAuthNode);
+
+		Node AppAddrNode = NodeHelpers.initNode("AppAddr", DMAccNode);
+		Node DefaultAddrNode = NodeHelpers.initNode("Default", AppAddrNode);
+		NodeHelpers.initLeaf("AddrType", "text/plain", "", NodeFormat.CHR, DefaultAddrNode);
+		NodeHelpers.initLeaf("Addr", "text/plain", "", NodeFormat.CHR, DefaultAddrNode);
+
+		Node PortNode = NodeHelpers.initNode("Port", DefaultAddrNode);
+		Node DefaultPortNode = NodeHelpers.initNode("Default", PortNode);
+		NodeHelpers.initLeaf("PortNbr", "text/plain", "80", NodeFormat.INT, DefaultPortNode);
 
 		return root;
 	}
