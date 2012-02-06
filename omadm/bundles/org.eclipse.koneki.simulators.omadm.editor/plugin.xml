@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?><!--
+    Copyright (c) 2012 Sierra Wireless and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Sierra Wireless - initial API and implementation
+ -->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.koneki.simulators.omadm.editor.OMADMSimulatorEditor"
+            contributorClass="org.eclipse.koneki.simulators.omadm.editor.OMADMSimulatorActionBarContributor"
+            default="true"
+            icon="icons/obj16/omadm_simulation.png"
+            id="org.eclipse.koneki.simulators.omadm.editor.OMADMSimulatorEditor"
+            name="OMA DM Simulator Editor">
+         <contentTypeBinding
+               contentTypeId="org.eclipse.koneki.simulators.omadm.model.OMADMSimulationModel">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.koneki.simulators"
+            class="org.eclipse.koneki.simulators.omadm.editor.wizards.NewOMADMSimulationWizard"
+            finalPerspective="com.anwrt.platform.perspective"
+            hasPages="true"
+            icon="icons/obj16/new_omadm_simulation.png"
+            id="org.eclipse.koneki.simulators.omadm.editor.wizards"
+            name="OMA DM Simulation">
+         <description>
+            Create a new OMA DM Simulation.
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            menuGroupId="com.anwrt.platform.devicesimulator.menuGroup"
+            type="new"
+            wizardId="org.eclipse.koneki.simulators.omadm.editor.wizards">
+         <enablement>
+            <reference
+                  definitionId="com.anwrt.platform.commonNavigator.isOPProject">
+            </reference></enablement>
+      </commonWizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:com.anwrt.platform.ui.toolbar?endof=tools">
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="icons/obj16/new_omadm_simulation.png"
+               id="com.anwrt.platform.ui.toolbar.OMADMSimulatorWizard"
+               style="push"
+               tooltip="New OMA DM Simulation">
+            <parameter
+                  name="newWizardId"
+                  value="org.eclipse.koneki.simulators.omadm.editor.wizards">
+            </parameter>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="com.anwrt.platform.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

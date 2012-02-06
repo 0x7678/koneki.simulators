@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.koneki.simulators.omadm.model.presentation.OMADMSimulatorModelWizardID"
+            name="%_UI_OMADMSimulatorModelWizard_label"
+            class="org.eclipse.koneki.simulators.omadm.model.presentation.OMADMSimulatorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/OMADMSimulatorModelFile.gif">
+         <description>%_UI_OMADMSimulatorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.koneki.simulators.omadm.model.presentation.OMADMSimulatorEditor"
+            contributorClass="org.eclipse.koneki.simulators.omadm.model.presentation.OMADMSimulatorActionBarContributor"
+            default="false"
+            icon="icons/full/obj16/OMADMSimulatorModelFile.gif"
+            id="org.eclipse.koneki.simulators.omadm.model.presentation.OMADMSimulatorEditorID"
+            name="OMA DM Editor">
+         	<contentTypeBinding contentTypeId="org.eclipse.koneki.simulators.omadm.model.OMADMSimulationModel"/>
+      </editor>
+   </extension>
+
+</plugin>
