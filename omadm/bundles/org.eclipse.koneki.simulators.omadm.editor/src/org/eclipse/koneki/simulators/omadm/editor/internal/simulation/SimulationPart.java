@@ -40,6 +40,23 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class SimulationPart extends EmfDetailsPart {
 
+	private Text nameText;
+	private ComboViewer formatCombo;
+	private Text typeText;
+	private Text dataText;
+	private ComboViewer getManagementCombo;
+	private ComboViewer getCodeCombo;
+	private ComboViewer addManagementCombo;
+	private ComboViewer addCodeCombo;
+	private ComboViewer deleteManagementCombo;
+	private ComboViewer deleteCodeCombo;
+	private ComboViewer copyManagementCombo;
+	private ComboViewer copyCodeCombo;
+	private ComboViewer replaceManagementCombo;
+	private ComboViewer replaceCodeCombo;
+	private ComboViewer execManagementCombo;
+	private ComboViewer execCodeCombo;
+
 	public SimulationPart(OMADMSimulatorEditor parentEditor) {
 		super(parentEditor);
 	}
@@ -274,24 +291,10 @@ public class SimulationPart extends EmfDetailsPart {
 		new ManagementChangeListener(this.getManagementCombo, this.getCodeCombo);
 	}
 
-	private Text nameText;
-	private ComboViewer formatCombo;
-	private Text typeText;
-	private Text dataText;
-	private ComboViewer getManagementCombo;
-	private ComboViewer getCodeCombo;
-	private ComboViewer addManagementCombo;
-	private ComboViewer addCodeCombo;
-	private ComboViewer deleteManagementCombo;
-	private ComboViewer deleteCodeCombo;
-	private ComboViewer copyManagementCombo;
-	private ComboViewer copyCodeCombo;
-	private ComboViewer replaceManagementCombo;
-	private ComboViewer replaceCodeCombo;
-	private ComboViewer execManagementCombo;
-	private ComboViewer execCodeCombo;
-
 	private static class ManagementChangeListener implements IChangeListener {
+
+		private final ComboViewer managementCombo;
+		private final ComboViewer codeCombo;
 
 		public ManagementChangeListener(final ComboViewer managementCombo, final ComboViewer codeCombo) {
 			this.managementCombo = managementCombo;
@@ -303,9 +306,6 @@ public class SimulationPart extends EmfDetailsPart {
 			this.codeCombo.getCombo().setEnabled(
 					((StructuredSelection) this.managementCombo.getSelection()).getFirstElement() == CommandManagement.CONSTANT);
 		}
-
-		private final ComboViewer managementCombo;
-		private final ComboViewer codeCombo;
 
 	}
 

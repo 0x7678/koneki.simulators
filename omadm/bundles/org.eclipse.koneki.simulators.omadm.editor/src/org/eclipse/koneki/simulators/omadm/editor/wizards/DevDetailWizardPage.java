@@ -27,6 +27,13 @@ public class DevDetailWizardPage extends WizardPage implements IWizardPage {
 	private static final String SW_V = "SwV"; //$NON-NLS-1$
 	private static final String FW_V = "FwV"; //$NON-NLS-1$
 
+	private Device device;
+	private Text devTypText;
+	private Text oemText;
+	private Text fwVText;
+	private Text swVText;
+	private Text hwVText;
+
 	public DevDetailWizardPage(final Device device, final String pageName) {
 		super(pageName);
 		this.device = device;
@@ -112,12 +119,5 @@ public class DevDetailWizardPage extends WizardPage implements IWizardPage {
 		devTypText.setText(device.getDeviceIdType().getName());
 		this.device = device;
 	}
-
-	private Device device;
-	private Text devTypText;
-	private Text oemText;
-	private Text fwVText;
-	private Text swVText;
-	private Text hwVText;
 
 }

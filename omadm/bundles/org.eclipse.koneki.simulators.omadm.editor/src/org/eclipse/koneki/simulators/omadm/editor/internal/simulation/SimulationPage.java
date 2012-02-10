@@ -31,6 +31,8 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 
 public class SimulationPage extends AbstractEmfFormPage {
 
+	private final EmfMasterDetailBlock masterDetail;
+
 	public SimulationPage(OMADMSimulatorEditor editor) {
 		super(editor, 1, Messages.SimulationPage_Title);
 		this.masterDetail = new SimulationMasterDetails(editor);
@@ -82,5 +84,4 @@ public class SimulationPage extends AbstractEmfFormPage {
 		return (OMADMSimulatorEditor) super.getEditor();
 	}
 
-	private final EmfMasterDetailBlock masterDetail;
 }

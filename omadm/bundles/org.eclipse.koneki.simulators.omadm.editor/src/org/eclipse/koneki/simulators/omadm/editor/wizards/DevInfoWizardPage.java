@@ -31,6 +31,12 @@ public class DevInfoWizardPage extends WizardPage implements IWizardPage {
 	private static final String MOD = "Mod"; //$NON-NLS-1$
 	private static final String MAN = "Man"; //$NON-NLS-1$
 
+	private Device device;
+	private Text devIdText;
+	private Text manText;
+	private Text modText;
+	private Text langText;
+
 	public DevInfoWizardPage(final Device device, final String pageName) {
 		super(pageName);
 		this.device = device;
@@ -130,11 +136,5 @@ public class DevInfoWizardPage extends WizardPage implements IWizardPage {
 		NodeHelpers.findFirstNode(device.getTree(), LANG).setData(getLang());
 		return device;
 	}
-
-	protected Device device;
-	protected Text devIdText;
-	protected Text manText;
-	protected Text modText;
-	protected Text langText;
 
 }

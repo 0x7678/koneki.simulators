@@ -40,6 +40,13 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class DashboardPart extends EmfDetailsPart {
 
+	private final DashboardPage page;
+	private Label nameLabel;
+	private Label formatLabel;
+	private Label typeLabel;
+	private Text dataText;
+	private ToolItem monitoringToolItem;
+
 	public DashboardPart(DashboardPage page) {
 		super(page.getEditor());
 		this.page = page;
@@ -147,11 +154,4 @@ public class DashboardPart extends EmfDetailsPart {
 			}
 		});
 	}
-
-	private final DashboardPage page;
-	private Label nameLabel;
-	private Label formatLabel;
-	private Label typeLabel;
-	private Text dataText;
-	private ToolItem monitoringToolItem;
 }

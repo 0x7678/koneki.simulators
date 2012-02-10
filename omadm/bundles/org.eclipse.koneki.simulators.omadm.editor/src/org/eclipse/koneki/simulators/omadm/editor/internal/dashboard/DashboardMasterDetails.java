@@ -19,6 +19,8 @@ import org.eclipse.ui.forms.IDetailsPage;
 
 public class DashboardMasterDetails extends EmfMasterDetailBlock {
 
+	private final DashboardPage page;
+
 	public DashboardMasterDetails(DashboardPage page) {
 		super(page.getEditor(), Messages.DeviceSection_Title);
 		this.page = page;
@@ -41,7 +43,5 @@ public class DashboardMasterDetails extends EmfMasterDetailBlock {
 	public OMADMSimulatorEditor getEditor() {
 		return (OMADMSimulatorEditor) super.getEditor();
 	}
-
-	private final DashboardPage page;
 
 }

@@ -103,9 +103,9 @@ class ConnectSelection extends SelectionAdapter {
 		}
 	}
 
-	private void updateServerURI(OMADMSimulatorEditor editor) {
+	private void updateServerURI(OMADMSimulatorEditor e) {
 		try {
-			server = new URI(editor.getOMADMSimulation().getDevice().getServerUrl());
+			server = new URI(e.getOMADMSimulation().getDevice().getServerUrl());
 		} catch (URISyntaxException e1) {
 			server = null;
 		}

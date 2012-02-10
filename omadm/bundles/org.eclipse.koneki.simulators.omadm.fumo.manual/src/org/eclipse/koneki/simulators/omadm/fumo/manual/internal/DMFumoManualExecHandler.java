@@ -45,7 +45,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class DMFumoManualExecHandler implements DMExecHandler {
 
-	private static final String FUMO = "FUMO";
+	private static final String FUMO = "FUMO"; //$NON-NLS-1$
 	private static final String CHR = "chr"; //$NON-NLS-1$
 	private static final String TEXT_PLAIN = "text/plain"; //$NON-NLS-1$
 
@@ -226,12 +226,12 @@ public class DMFumoManualExecHandler implements DMExecHandler {
 
 	private static String getFwV(final Node node) {
 		final Node fwV = NodeHelpers.getNode(node.getRoot(), "./DevDetail/FwV");
-		return fwV != null ? fwV.getData() : "";
+		return fwV != null ? fwV.getData() : ""; //$NON-NLS-1$
 	}
 
 	private static String getSwV(final Node node) {
 		final Node swV = NodeHelpers.getNode(node.getRoot(), "./DevDetail/SwV");
-		return swV != null ? swV.getData() : "";
+		return swV != null ? swV.getData() : ""; //$NON-NLS-1$
 	}
 
 	private DMGenericAlert getGenericAlert() {

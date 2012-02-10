@@ -24,6 +24,9 @@ import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage;
 
 class AddInteriorNode extends Action {
 
+	private final OMADMSimulatorEditor editor;
+	private final Node parentNode;
+
 	public AddInteriorNode(final OMADMSimulatorEditor editor, final Node parentNode) {
 		this.editor = editor;
 		this.parentNode = parentNode;
@@ -56,8 +59,5 @@ class AddInteriorNode extends Action {
 		this.editor.getEditingDomain().getCommandStack()
 				.execute(new AddCommand(this.editor.getEditingDomain(), this.parentNode, OMADMSimulatorPackage.Literals.NODE__CHILDREN, interior));
 	}
-
-	private final OMADMSimulatorEditor editor;
-	private final Node parentNode;
 
 }

@@ -20,6 +20,15 @@ public class Messages extends NLS {
 	public static String DevDetailWizardPage_HardwareRevision;
 	public static String DevDetailWizardPage_OEMName;
 	public static String DevDetailWizardPage_SoftwareRevision;
+
+	public static String NewOMADMSimulationWizard_Device_Details_desc;
+	public static String NewOMADMSimulationWizard_Device_Details_title;
+	public static String NewOMADMSimulationWizard_Device_Information_desc;
+	public static String NewOMADMSimulationWizard_Device_Information_title;
+	public static String NewOMADMSimulationWizard_Open_Editor;
+	public static String NewOMADMSimulationWizard_Open_error;
+	public static String NewOMADMSimulationWizard_Save_error;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

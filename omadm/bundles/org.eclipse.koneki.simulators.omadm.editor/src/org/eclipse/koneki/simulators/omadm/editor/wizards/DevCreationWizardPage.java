@@ -23,12 +23,17 @@ import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class DevCreationWizardPage extends WizardPage implements IWizardPage {
+
+	private final Device device;
+	private Text deviceIDText;
+	private Text serverPasswordText;
+	private Text serverLoginText;
+	private Text serverURIText;
 
 	public DevCreationWizardPage(final String pageName) {
 		super(pageName);
@@ -74,10 +79,6 @@ public class DevCreationWizardPage extends WizardPage implements IWizardPage {
 		label.setText(Messages.Associate_Label);
 		GridDataFactory.fillDefaults().grab(false, false).span(0, 0).applyTo(label);
 
-		associatedModel = new Label(devCreationComposite, SWT.NONE);
-		associatedModel.setText(Messages.Associate_DefaultMessage);
-		GridDataFactory.fillDefaults().grab(true, false).span(0, 0).applyTo(associatedModel);
-
 		hookListeners();
 		setControl(devCreationComposite);
 	}
@@ -119,11 +120,4 @@ public class DevCreationWizardPage extends WizardPage implements IWizardPage {
 		return device;
 	}
 
-	protected Button associateModelButton;
-	protected Label associatedModel;
-	protected final Device device;
-	protected Text deviceIDText;
-	protected Text serverPasswordText;
-	protected Text serverLoginText;
-	protected Text serverURIText;
 }

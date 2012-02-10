@@ -34,6 +34,13 @@ import org.eclipse.swt.widgets.TreeItem;
 
 final class ConnectProtocolListener implements ProtocolListener {
 
+	private final DashboardPage page;
+	private TreeItem sessionCommandItem;
+	private TreeItem sessionMessageItem;
+	private TreeItem phaseMessageItem;
+	private boolean isSetupPhase;
+	private boolean isManagementPhase;
+
 	public ConnectProtocolListener(final DashboardPage page) {
 		this.page = page;
 	}
@@ -45,7 +52,7 @@ final class ConnectProtocolListener implements ProtocolListener {
 			@Override
 			public void run() {
 				ConnectProtocolListener.this.sessionCommandItem = new TreeItem(ConnectProtocolListener.this.page.getCommandsViewTree(), SWT.NONE);
-				ConnectProtocolListener.this.sessionCommandItem.setText(new String[] { "Session " + sessionID, "", "" });
+				ConnectProtocolListener.this.sessionCommandItem.setText(new String[] { "Session " + sessionID, "", "" }); //$NON-NLS-2$ //$NON-NLS-3$
 				ConnectProtocolListener.this.sessionCommandItem
 						.setImage(new Image[] { Activator.getDefault().getImage(Activator.SESSION), null, null });
 				ConnectProtocolListener.this.sessionMessageItem = new TreeItem(ConnectProtocolListener.this.page.getMessagesViewTree(), SWT.NONE);
@@ -284,12 +291,5 @@ final class ConnectProtocolListener implements ProtocolListener {
 			return xml;
 		}
 	}
-
-	private final DashboardPage page;
-	private TreeItem sessionCommandItem;
-	private TreeItem sessionMessageItem;
-	private TreeItem phaseMessageItem;
-	private boolean isSetupPhase;
-	private boolean isManagementPhase;
 
 }

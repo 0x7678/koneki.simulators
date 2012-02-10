@@ -33,6 +33,11 @@ import org.eclipse.koneki.simulators.omadm.model.Node;
  */
 public class DMBasicSimulator implements DMSimulator {
 
+	private final DMClient dmClient;
+	private final ExecutorService executorService;
+	private final Map<MOIPathKey, PriorityQueue<DMExecHandler>> moiPathKeyToExecHandler;
+	private final Map<String, PriorityQueue<DMExecHandler>> pathKeyToExecHandler;
+
 	public DMBasicSimulator(final DMClient dmClient) {
 		if (dmClient != null) {
 			this.dmClient = dmClient;
@@ -177,12 +182,10 @@ public class DMBasicSimulator implements DMSimulator {
 		return this.dmClient;
 	}
 
-	private final DMClient dmClient;
-	private final ExecutorService executorService;
-	private final Map<MOIPathKey, PriorityQueue<DMExecHandler>> moiPathKeyToExecHandler;
-	private final Map<String, PriorityQueue<DMExecHandler>> pathKeyToExecHandler;
-
 	private static final class MOIPathKey {
+
+		private final String managementObjectIdentifier;
+		private final String nodePath;
 
 		public MOIPathKey(final String managementObjectIdentifier, final String nodePath) {
 			this.managementObjectIdentifier = managementObjectIdentifier;
@@ -209,10 +212,6 @@ public class DMBasicSimulator implements DMSimulator {
 				return false;
 			}
 		}
-
-		private final String managementObjectIdentifier;
-		private final String nodePath;
-
 	}
 
 }

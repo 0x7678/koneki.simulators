@@ -22,6 +22,9 @@ import org.eclipse.koneki.simulators.omadm.model.Node;
 
 class DeleteNode extends Action {
 
+	private final OMADMSimulatorEditor editor;
+	private final Node node;
+
 	public DeleteNode(final OMADMSimulatorEditor editor, final Node node) {
 		this.editor = editor;
 		this.node = node;
@@ -39,8 +42,5 @@ class DeleteNode extends Action {
 			this.editor.getEditingDomain().getCommandStack().execute(new DeleteCommand(this.editor.getEditingDomain(), Arrays.asList(node)));
 		}
 	}
-
-	private final OMADMSimulatorEditor editor;
-	private final Node node;
 
 }

@@ -42,6 +42,9 @@ import org.eclipse.swt.widgets.Text;
 
 final class ConnectCommandHandler implements CommandHandler {
 
+	private final DashboardPage page;
+	private Status status;
+
 	public ConnectCommandHandler(final DashboardPage page) {
 		this.page = page;
 	}
@@ -59,15 +62,15 @@ final class ConnectCommandHandler implements CommandHandler {
 				dialog.setWithResult(true);
 				dialog.setCodes(StatusCode.GET_CODES);
 				final Node tree = editor.getOMADMSimulation().getDevice().getTree();
-				final Status status = DMCommandHelper.get(tree, editor.getEditingDomain(), target, false);
-				if (status.getCode() == StatusCode.OK.getCode()) {
-					dialog.setDefaultFormat(NodeFormat.get(status.getResult().getFormat()));
-					dialog.setDefaultType(status.getResult().getType());
-					dialog.setDefaultResults(status.getResult().getData());
+				final Status st = DMCommandHelper.get(tree, editor.getEditingDomain(), target, false);
+				if (st.getCode() == StatusCode.OK.getCode()) {
+					dialog.setDefaultFormat(NodeFormat.get(st.getResult().getFormat()));
+					dialog.setDefaultType(st.getResult().getType());
+					dialog.setDefaultResults(st.getResult().getData());
 				} else {
 					dialog.setDefaultFormat(NodeFormat.CHR);
 					dialog.setDefaultType("text/plain");
-					dialog.setDefaultResults("");
+					dialog.setDefaultResults(""); //$NON-NLS-1$
 				}
 				dialog.setSelectionListener(new CommandHandlerDialog.OKSelectionListener() {
 
@@ -143,7 +146,7 @@ final class ConnectCommandHandler implements CommandHandler {
 				final CommandHandlerDialog dialog = new CommandHandlerDialog(editor.getSite().getShell(), editor.getANWRTToolkit());
 				dialog.setText("Manual copy");
 				dialog.setImage(Activator.getDefault().getImage(Activator.COPY_COMMAND));
-				dialog.setCommandText("Copy " + target + " " + source);
+				dialog.setCommandText("Copy " + target + " " + source); //$NON-NLS-2$
 				dialog.setWithResult(false);
 				dialog.setCodes(StatusCode.COPY_CODES);
 				dialog.setSelectionListener(new CommandHandlerDialog.OKSelectionListener() {
@@ -243,10 +246,17 @@ final class ConnectCommandHandler implements CommandHandler {
 		this.status = status;
 	}
 
-	private final DashboardPage page;
-	private Status status;
-
 	private static final class CommandHandlerDialog extends Dialog {
+
+		private final ANWRTToolkit toolkit;
+		private String commandText;
+		private Image image;
+		private boolean withResult;
+		private StatusCode[] codes;
+		private NodeFormat defaultFormat;
+		private String defaultType;
+		private String defaultResults;
+		private OKSelectionListener selectionListener;
 
 		public CommandHandlerDialog(final Shell parent, final ANWRTToolkit toolkit) {
 			super(parent, SWT.TITLE | SWT.BORDER | SWT.APPLICATION_MODAL);
@@ -399,16 +409,6 @@ final class ConnectCommandHandler implements CommandHandler {
 		public void setDefaultResults(final String defaultResults) {
 			this.defaultResults = defaultResults;
 		}
-
-		private final ANWRTToolkit toolkit;
-		private String commandText;
-		private Image image;
-		private boolean withResult;
-		private StatusCode[] codes;
-		private NodeFormat defaultFormat;
-		private String defaultType;
-		private String defaultResults;
-		private OKSelectionListener selectionListener;
 
 		public static interface OKSelectionListener {
 

@@ -46,6 +46,13 @@ import org.eclipse.ui.part.FileEditorInput;
 
 public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 
+	private WizardNewFileCreationPage newFileCreationPage;
+	private DevCreationWizardPage devCreationWizardPage;
+	private DevInfoWizardPage devInfoWizardPage;
+	private DevDetailWizardPage devDetailWizardPage;
+	private IWizardPage currentPage;
+	private Device device;
+
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		setWindowTitle(org.eclipse.koneki.simulators.omadm.editor.Messages.Wizard_Title);
@@ -62,12 +69,12 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 		this.devCreationWizardPage.setDescription(org.eclipse.koneki.simulators.omadm.editor.Messages.Wizard_ConfigurationDevice_Description);
 
 		this.devInfoWizardPage = new DevInfoWizardPage(device, getClass().getName() + "#DevInfoPage"); //$NON-NLS-1$
-		this.devInfoWizardPage.setTitle("Device informations");
-		this.devInfoWizardPage.setDescription("Please enter device informations.");
+		this.devInfoWizardPage.setTitle(Messages.NewOMADMSimulationWizard_Device_Information_title);
+		this.devInfoWizardPage.setDescription(Messages.NewOMADMSimulationWizard_Device_Information_desc);
 
 		this.devDetailWizardPage = new DevDetailWizardPage(device, getClass().getName() + "#DevDetailPage"); //$NON-NLS-1$
-		this.devDetailWizardPage.setTitle("Device details");
-		this.devDetailWizardPage.setDescription("Please enter device details.");
+		this.devDetailWizardPage.setTitle(Messages.NewOMADMSimulationWizard_Device_Details_title);
+		this.devDetailWizardPage.setDescription(Messages.NewOMADMSimulationWizard_Device_Details_desc);
 	}
 
 	@Override
@@ -97,7 +104,7 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 
 		// The simulation file wanted by the user
 		final IFile file = ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(this.newFileCreationPage.getContainerFullPath().append(this.newFileCreationPage.getFileName() + ".xml"));
+				.getFile(this.newFileCreationPage.getContainerFullPath().append(this.newFileCreationPage.getFileName() + ".xml")); //$NON-NLS-1$
 
 		// The operation for create the file
 		final WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
@@ -111,7 +118,7 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 			protected void execute(IProgressMonitor progressMonitor) throws CoreException {
 				final ResourceSet resourceSet = new ResourceSetImpl();
 				final URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-				final Resource resource = resourceSet.createResource(fileURI, "com.swir.platform.simulators.omadm.model.OMADMSimulationModel");
+				final Resource resource = resourceSet.createResource(fileURI, "com.swir.platform.simulators.omadm.model.OMADMSimulationModel"); //$NON-NLS-1$
 
 				if (currentPage == devCreationWizardPage) {
 					device = devCreationWizardPage.getDevice();
@@ -132,8 +139,7 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 				try {
 					resource.save(null);
 				} catch (IOException e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 0, "An error occured while trying to save the resource.",
-							e));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.NewOMADMSimulationWizard_Save_error, e));
 				} finally {
 					progressMonitor.done();
 				}
@@ -152,30 +158,24 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 			page.openEditor(new FileEditorInput(file), defaultEditor.getId());
 			return true;
 		} catch (InvocationTargetException e) {
-			MessageDialog.openError(getShell(), "Open Editor", "An error occured while trying to save the resource.");
+			MessageDialog.openError(getShell(), Messages.NewOMADMSimulationWizard_Open_Editor, Messages.NewOMADMSimulationWizard_Save_error);
 			return false;
 		} catch (InterruptedException e) {
-			MessageDialog.openError(getShell(), "Open Editor", "An error occured while trying to save the resource.");
+			MessageDialog.openError(getShell(), Messages.NewOMADMSimulationWizard_Open_Editor, Messages.NewOMADMSimulationWizard_Save_error);
 			return false;
 		} catch (PartInitException e) {
-			MessageDialog.openError(getShell(), "Open Editor", "An error occured when trying to open editor.");
+			MessageDialog.openError(getShell(), Messages.NewOMADMSimulationWizard_Open_Editor, Messages.NewOMADMSimulationWizard_Open_error);
 			return false;
 		}
 	}
 
 	IFile getFile() {
 		return ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(this.newFileCreationPage.getContainerFullPath().append(this.newFileCreationPage.getFileName() + ".xml"));
+				.getFile(this.newFileCreationPage.getContainerFullPath().append(this.newFileCreationPage.getFileName() + ".xml")); //$NON-NLS-1$
 	}
 
 	IProject getProject() {
 		return getFile().getProject();
 	}
 
-	private WizardNewFileCreationPage newFileCreationPage;
-	private DevCreationWizardPage devCreationWizardPage;
-	private DevInfoWizardPage devInfoWizardPage;
-	private DevDetailWizardPage devDetailWizardPage;
-	private IWizardPage currentPage;
-	private Device device;
 }

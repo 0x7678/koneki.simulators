@@ -24,6 +24,8 @@ import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage;
 
 class AddLeafNode extends Action {
 
+	private final OMADMSimulatorEditor editor;
+	private final Node parentNode;
 	private static final String TEXT_PLAIN = "text/plain"; //$NON-NLS-1$
 
 	public AddLeafNode(final OMADMSimulatorEditor editor, final Node parentNode) {
@@ -57,8 +59,5 @@ class AddLeafNode extends Action {
 		this.editor.getEditingDomain().getCommandStack()
 				.execute(new AddCommand(this.editor.getEditingDomain(), this.parentNode, OMADMSimulatorPackage.Literals.NODE__CHILDREN, leaf));
 	}
-
-	private final OMADMSimulatorEditor editor;
-	private final Node parentNode;
 
 }
