@@ -22,10 +22,9 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.koneki.simulators.omadm.editor"; //$NON-NLS-1$
 
-	private static final String ICONS_FOLDER = "icons"; //$NON-NLS-1$
-
-	private static final String OBJ16 = ICONS_FOLDER + "/obj16"; //$NON-NLS-1$
-	private static final String OBJ32 = ICONS_FOLDER + "/obj32"; //$NON-NLS-1$
+	public static final String ICONS_FOLDER = "icons"; //$NON-NLS-1$
+	public static final String OBJ16 = ICONS_FOLDER + "/obj16"; //$NON-NLS-1$
+	public static final String OBJ32 = ICONS_FOLDER + "/obj32"; //$NON-NLS-1$
 
 	public static final String ADD_COMMAND = OBJ16 + "/add_command.png"; //$NON-NLS-1$
 	public static final String ALERT_COMMAND = OBJ16 + "/alert_command.png"; //$NON-NLS-1$
@@ -54,6 +53,8 @@ public class Activator extends AbstractUIPlugin {
 
 	private static Activator plugin;
 
+	private ServiceTracker tracker;
+
 	public Activator() {
 	}
 
@@ -61,19 +62,19 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		this.traker = new ServiceTracker(context, DMSimulator.class.getName(), null);
-		this.traker.open();
+		this.tracker = new ServiceTracker(context, DMSimulator.class.getName(), null);
+		this.tracker.open();
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		this.traker.close();
+		this.tracker.close();
 		plugin = null;
 		super.stop(context);
 	}
 
 	public DMSimulator getDMSimulator() {
-		return (DMSimulator) this.traker.getService();
+		return (DMSimulator) this.tracker.getService();
 	}
 
 	public Image getImage(String imagePath) {
@@ -88,8 +89,6 @@ public class Activator extends AbstractUIPlugin {
 	public ImageDescriptor getImageDescriptor(String imagePath) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, imagePath);
 	}
-
-	private ServiceTracker traker;
 
 	public static Activator getDefault() {
 		return plugin;

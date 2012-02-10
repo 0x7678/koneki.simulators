@@ -27,6 +27,9 @@ import org.osgi.service.component.ComponentContext;
 
 public class DMBasicSimulatorComponent implements DMSimulator {
 
+	private DMBasicSimulator simulator;
+	private final Set<DMExecHandler> execHandlers;
+
 	public DMBasicSimulatorComponent() {
 		this.execHandlers = new HashSet<DMExecHandler>();
 	}
@@ -77,8 +80,5 @@ public class DMBasicSimulatorComponent implements DMSimulator {
 			final ProtocolListener[] protocolListeners, final DMGenericAlert[] genericAlerts) {
 		this.simulator.simulate(server, tree, editingDomain, commandHandler, protocolListeners, genericAlerts);
 	}
-
-	private DMBasicSimulator simulator;
-	private final Set<DMExecHandler> execHandlers;
 
 }

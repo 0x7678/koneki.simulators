@@ -59,6 +59,17 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class DashboardPage extends AbstractEmfFormPage {
 
+	private final OMADMSimulatorEditor editor;
+	private final EmfMasterDetailBlock masterDetail;
+	private TabFolder sessionManagementCompositeTabs;
+	private ToolItem clearToolItem;
+	private Tree commandsViewTree;
+	private Tree messagesViewTree;
+	private StyledText messagesViewText;
+	private ClickableIconAndLabel connectIcon;
+	private Label alertWaitingLabel;
+	private Queue<DMGenericAlert> genericAlertsQueue;
+
 	public DashboardPage(OMADMSimulatorEditor editor) {
 		super(editor, 1, Messages.DashBoardPage_Title);
 		this.editor = editor;
@@ -309,15 +320,4 @@ public class DashboardPage extends AbstractEmfFormPage {
 
 		});
 	}
-
-	private final OMADMSimulatorEditor editor;
-	private final EmfMasterDetailBlock masterDetail;
-	private TabFolder sessionManagementCompositeTabs;
-	private ToolItem clearToolItem;
-	private Tree commandsViewTree;
-	private Tree messagesViewTree;
-	private StyledText messagesViewText;
-	private ClickableIconAndLabel connectIcon;
-	private Label alertWaitingLabel;
-	private Queue<DMGenericAlert> genericAlertsQueue;
 }

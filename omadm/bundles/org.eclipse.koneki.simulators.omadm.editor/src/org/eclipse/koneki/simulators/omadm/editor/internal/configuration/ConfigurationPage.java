@@ -33,6 +33,15 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class ConfigurationPage extends AbstractEmfFormPage {
 
+	private Text serverURI;
+	private Text serverLogin;
+	private Text serverPassword;
+	// private Shell currentShell;
+	private Text deviceIdText;
+
+	// private Button associateModelButton;
+	// private Label associatedModel;
+
 	public ConfigurationPage(OMADMSimulatorEditor editor) {
 		super(editor, 1, Messages.ConfigurationPage_Title);
 	}
@@ -135,15 +144,6 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 
 		getEditor();
 	}
-
-	private Text serverURI;
-	private Text serverLogin;
-	private Text serverPassword;
-	// private Shell currentShell;
-	private Text deviceIdText;
-
-	// private Button associateModelButton;
-	// private Label associatedModel;
 
 	@Override
 	public void dispose() {

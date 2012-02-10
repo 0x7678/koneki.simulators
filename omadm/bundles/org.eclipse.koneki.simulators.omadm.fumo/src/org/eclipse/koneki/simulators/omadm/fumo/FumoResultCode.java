@@ -22,6 +22,9 @@ public enum FumoResultCode {
 			"Download fails due to device is out of memory"), FIRMWARE_UPDATE_FAILS_DUE_TO_DEVICE_OUT_OF_MEMORY(502, //$NON-NLS-1$
 			"Firmware update fails due to device out of memory"), DOWNLOAD_FAILS_DUE_TO_NETWORK_ISSUES(503, "Download fails due to network issues"); //$NON-NLS-1$ //$NON-NLS-2$
 
+	private final int code;
+	private final String description;
+
 	private FumoResultCode(final int code, final String description) {
 		this.code = code;
 		this.description = description;
@@ -39,8 +42,5 @@ public enum FumoResultCode {
 	public String toString() {
 		return String.valueOf(this.code) + " " + this.description; //$NON-NLS-1$
 	}
-
-	private final int code;
-	private final String description;
 
 }

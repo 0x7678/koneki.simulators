@@ -49,6 +49,8 @@ public class DMFumoManualExecHandler implements DMExecHandler {
 	private static final String CHR = "chr"; //$NON-NLS-1$
 	private static final String TEXT_PLAIN = "text/plain"; //$NON-NLS-1$
 
+	private DMGenericAlert genericAlert;
+
 	@Override
 	public Status exec(final Node nodeToExec, final EditingDomain editingDomain, final String correlator, final String format, final String type,
 			final String data) {
@@ -241,8 +243,6 @@ public class DMFumoManualExecHandler implements DMExecHandler {
 	public void setGenericAlert(final DMGenericAlert genericAlert) {
 		this.genericAlert = genericAlert;
 	}
-
-	private DMGenericAlert genericAlert;
 
 	private static final class FumoDialog extends Dialog {
 

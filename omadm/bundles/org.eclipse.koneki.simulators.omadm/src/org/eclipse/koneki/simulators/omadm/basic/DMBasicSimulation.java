@@ -31,6 +31,10 @@ import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
 import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers.NodeIterator;
 
 final class DMBasicSimulation implements Runnable, CommandHandler {
+
+	private static final String AUTH_SECRET = "AuthSecret"; //$NON-NLS-1$
+	private static final String AUTH_NAME = "AuthName"; //$NON-NLS-1$
+
 	private final DMBasicSimulator dmSimulator;
 	private final URI server;
 	private final Node tree;
@@ -38,8 +42,6 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 	private final CommandHandler commandHandler;
 	private final ProtocolListener[] protocolListeners;
 	private final DMGenericAlert[] genericAlerts;
-	private static final String AUTH_SECRET = "AuthSecret"; //$NON-NLS-1$
-	private static final String AUTH_NAME = "AuthName"; //$NON-NLS-1$
 
 	public DMBasicSimulation(final DMBasicSimulator dmSimulator, final URI server, final Node tree, final EditingDomain editingDomain,
 			final CommandHandler commandHandler, final ProtocolListener[] protocolListeners, final DMGenericAlert[] genericAlerts) {

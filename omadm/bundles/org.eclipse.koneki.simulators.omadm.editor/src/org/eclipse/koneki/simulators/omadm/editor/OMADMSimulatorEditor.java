@@ -38,6 +38,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.part.FileEditorInput;
 
 public class OMADMSimulatorEditor extends EmfFormEditor<OMADMSimulation> {
+	private final ANWRTToolkit toolkit;
 
 	public OMADMSimulatorEditor() {
 		this.toolkit = new ANWRTToolkit(Display.getCurrent());
@@ -103,7 +104,5 @@ public class OMADMSimulatorEditor extends EmfFormEditor<OMADMSimulation> {
 	public ANWRTToolkit getANWRTToolkit() {
 		return toolkit;
 	}
-
-	private final ANWRTToolkit toolkit;
 
 }
