@@ -42,17 +42,17 @@ public class DeviceHelpersTest {
 				{ "FEDCBA987654", true, false, true }, { "fedcba987654", true, false, true }, { "AaBcCcDdEeFf", true, false, true }, };
 		for (Object[] testData : testDatas) {
 			final Device freeDevice = OMADMSimulatorFactory.eINSTANCE.createDevice();
-			// freeDevice.setDeviceId((String) testData[0]);
+			freeDevice.setDeviceId((String) testData[0]);
 			freeDevice.setDeviceIdType(DeviceIdType.FREE);
-			// assertEquals(freeDevice.getDeviceId(), ((Boolean) testData[1]).booleanValue(), isValidDeviceId(freeDevice));
+			assertEquals(freeDevice.getDeviceId(), ((Boolean) testData[1]).booleanValue(), isValidDeviceId(freeDevice));
 			final Device imeiDevice = OMADMSimulatorFactory.eINSTANCE.createDevice();
-			// imeiDevice.setDeviceId((String) testData[0]);
+			imeiDevice.setDeviceId((String) testData[0]);
 			imeiDevice.setDeviceIdType(DeviceIdType.IMEI);
-			// assertEquals(imeiDevice.getDeviceId(), ((Boolean) testData[2]).booleanValue(), isValidDeviceId(imeiDevice));
+			assertEquals(imeiDevice.getDeviceId(), ((Boolean) testData[2]).booleanValue(), isValidDeviceId(imeiDevice));
 			final Device macDevice = OMADMSimulatorFactory.eINSTANCE.createDevice();
-			// macDevice.setDeviceId((String) testData[0]);
+			macDevice.setDeviceId((String) testData[0]);
 			macDevice.setDeviceIdType(DeviceIdType.MAC_ADDRESS);
-			// assertEquals(macDevice.getDeviceId(), ((Boolean) testData[3]).booleanValue(), isValidDeviceId(macDevice));
+			assertEquals(macDevice.getDeviceId(), ((Boolean) testData[3]).booleanValue(), isValidDeviceId(macDevice));
 		}
 	}
 
@@ -62,7 +62,6 @@ public class DeviceHelpersTest {
 		final Node root = OMADMSimulatorFactory.eINSTANCE.createNode();
 		root.setFormat(NodeFormat.CHR);
 		final Device device = OMADMSimulatorFactory.eINSTANCE.createDevice();
-		device.setTree(root);
 		assertTrue(isValidRootNodeType(device));
 	}
 

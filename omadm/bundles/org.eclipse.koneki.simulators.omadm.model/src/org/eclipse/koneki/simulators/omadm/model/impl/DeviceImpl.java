@@ -145,10 +145,11 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected DeviceImpl() {
 		super();
+		setTree(NodeHelpers.initTree());
 	}
 
 	/**
@@ -183,10 +184,14 @@ public class DeviceImpl extends EObjectImpl implements Device {
 			DeviceIdType oldDeviceIdType = deviceIdType;
 			deviceIdType = newDeviceIdType == null ? DEVICE_ID_TYPE_EDEFAULT : newDeviceIdType;
 
+			String newDeviceId = DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1];
+
 			if (newDeviceIdType != DEVICE_ID_TYPE_EDEFAULT) {
-				setDeviceId(deviceIdType.getName() + ":" + DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
-			} else {
-				// setDeviceId(DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
+				if (newDeviceId != null) {
+					setDeviceId(deviceIdType.getName() + ":" + DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[1]);
+				} else {
+					setDeviceId(deviceIdType.getName() + ":" + deviceId);
+				}
 			}
 			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.SET, OMADMSimulatorPackage.DEVICE__DEVICE_ID_TYPE, oldDeviceIdType, deviceIdType));
@@ -264,16 +269,14 @@ public class DeviceImpl extends EObjectImpl implements Device {
 	@Override
 	public void setDeviceId(String newDeviceId) {
 		String oldDeviceId = deviceId;
-		Node devIdNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getTree(), "./DevInfo"), "DevId");
-		if (devIdNode != null) {
-			if (!newDeviceId.equals(oldDeviceId)) {
+		Node root = getTree();
+		Node devIdNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(root, "./DevInfo"), "DevId");
+		if (devIdNode != null && newDeviceId != null) {
+			if (newDeviceId != null && !newDeviceId.equals(oldDeviceId)) {
 				devIdNode.setData(newDeviceId);
 			}
 			deviceId = newDeviceId;
 
-			/*
-			 * Update the DeviceIdType
-			 */
 			String deviceIdType = DeviceHelpers.getDeviceIdTypeAndValue(deviceId)[0];
 			if (deviceIdType != null) {
 
@@ -285,7 +288,15 @@ public class DeviceImpl extends EObjectImpl implements Device {
 					setDeviceIdType(DeviceIdType.FREE);
 				}
 			} else {
-				setDeviceIdType(DeviceIdType.FREE);
+				if (deviceId != null) {
+					if (deviceId.matches("^[0-9]{15}$")) {
+						setDeviceIdType(DeviceIdType.IMEI);
+					} else if (deviceId.matches("^[a-fA-F0-9]{12}$")) {
+						setDeviceIdType(DeviceIdType.MAC_ADDRESS);
+					} else {
+						setDeviceIdType(DeviceIdType.FREE);
+					}
+				}
 			}
 		}
 

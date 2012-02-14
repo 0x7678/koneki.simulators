@@ -78,9 +78,9 @@ public class DeviceHelpers {
 			if (deviceId != null) {
 				switch (device.getDeviceIdType()) {
 				case IMEI:
-					return deviceId.matches("^[0-9]{15}$");
+					return deviceId.matches("^[0-9]{15}$") || deviceId.matches("^IMEI:[0-9]{15}$");
 				case MAC_ADDRESS:
-					return deviceId.matches("^[a-fA-F0-9]{12}$");
+					return deviceId.matches("^[a-fA-F0-9]{12}$") || deviceId.matches("^MAC_ADDRESS:[a-fA-F0-9]{12}$");
 				default:
 					return deviceId.matches("^\\S+(\\s+\\S+)*$");
 				}

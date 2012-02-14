@@ -19,7 +19,6 @@ import org.eclipse.koneki.simulators.omadm.editor.Messages;
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorFactory;
 import org.eclipse.koneki.simulators.omadm.model.util.DeviceHelpers;
-import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -38,7 +37,6 @@ public class DevCreationWizardPage extends WizardPage implements IWizardPage {
 	public DevCreationWizardPage(final String pageName) {
 		super(pageName);
 		device = OMADMSimulatorFactory.eINSTANCE.createDevice();
-		device.setTree(NodeHelpers.initTree());
 	}
 
 	@Override
