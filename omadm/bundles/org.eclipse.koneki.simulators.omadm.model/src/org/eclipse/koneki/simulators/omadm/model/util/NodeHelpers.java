@@ -42,8 +42,6 @@ public class NodeHelpers {
 		}
 	}
 
-	
-	
 	private static boolean isValidRootNodeName(final String nodeName) {
 		return nodeName != null && nodeName.matches("^.$");
 	}
@@ -330,6 +328,9 @@ public class NodeHelpers {
 				"ServerID", "AppID", "AuthType", "AuthData", "AuthName", "AuthSecret" };
 
 		if (node == null)
+			return false;
+
+		if (node.getRoot() == node)
 			return false;
 
 		for (String name : notAllowedNode) {

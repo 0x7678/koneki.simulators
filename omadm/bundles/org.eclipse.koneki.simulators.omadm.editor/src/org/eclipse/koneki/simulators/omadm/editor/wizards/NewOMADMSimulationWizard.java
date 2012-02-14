@@ -33,7 +33,6 @@ import org.eclipse.koneki.simulators.omadm.editor.internal.Activator;
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.OMADMSimulation;
 import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorFactory;
-import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -58,7 +57,6 @@ public class NewOMADMSimulationWizard extends Wizard implements INewWizard {
 		setWindowTitle(org.eclipse.koneki.simulators.omadm.editor.Messages.Wizard_Title);
 
 		device = OMADMSimulatorFactory.eINSTANCE.createDevice();
-		device.setTree(NodeHelpers.initTree());
 
 		this.newFileCreationPage = new WizardNewFileCreationPage(getClass().getName() + "#FileCreationPage", selection); //$NON-NLS-1$
 		this.newFileCreationPage.setTitle(org.eclipse.koneki.simulators.omadm.editor.Messages.Wizard_NewFile_Title);
