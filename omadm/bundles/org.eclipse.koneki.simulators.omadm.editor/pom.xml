@@ -20,6 +20,6 @@
   </parent>
   <groupId>org.eclipse.koneki.simulators.omadm</groupId>
   <artifactId>org.eclipse.koneki.simulators.omadm.editor</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.8.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

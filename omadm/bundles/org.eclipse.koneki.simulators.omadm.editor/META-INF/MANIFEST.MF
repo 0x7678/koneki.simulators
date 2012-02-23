@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.koneki.simulator.omadm.editor
 Bundle-SymbolicName: org.eclipse.koneki.simulators.omadm.editor;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.koneki.simulators.omadm.editor.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -14,18 +14,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.databinding,
  org.eclipse.pde.emfforms,
  org.eclipse.koneki.simulators.omadm.model.edit;bundle-version="0.1.0",
- org.eclipse.koneki.commons.ui;bundle-version="1.0.0"
+ org.eclipse.koneki.commons.ui;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.koneki.protocols.omadm;version="0.1.0",
- org.eclipse.koneki.protocols.omadm.client;version="0.1.0",
- org.eclipse.koneki.simulators.omadm;version="0.1.0",
+Import-Package: org.eclipse.koneki.protocols.omadm;version="0.8.0",
+ org.eclipse.koneki.protocols.omadm.client;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm;version="0.8.0",
  org.eclipse.koneki.simulators.omadm.basic
-Export-Package: org.eclipse.koneki.simulators.omadm.editor;version="0.1.0",
- org.eclipse.koneki.simulators.omadm.editor.dialogs;version="0.1.0",
+Export-Package: org.eclipse.koneki.simulators.omadm.editor;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.editor.dialogs;version="0.8.0",
  org.eclipse.koneki.simulators.omadm.editor.internal;x-internal:=true,
  org.eclipse.koneki.simulators.omadm.editor.internal.configuration;x-internal:=true,
- org.eclipse.koneki.simulators.omadm.editor.internal.dashboard;version="0.1.0",
- org.eclipse.koneki.simulators.omadm.editor.internal.simulation;version="0.1.0",
- org.eclipse.koneki.simulators.omadm.editor.wizards;version="0.1.0"
+ org.eclipse.koneki.simulators.omadm.editor.internal.dashboard;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.editor.internal.simulation;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.editor.wizards;version="0.8.0"
 
