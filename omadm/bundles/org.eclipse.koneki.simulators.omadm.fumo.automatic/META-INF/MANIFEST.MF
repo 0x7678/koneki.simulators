@@ -6,11 +6,11 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.koneki.protocols.omadm;version="0.1.0",
- org.eclipse.koneki.protocols.omadm.client;version="0.1.0",
- org.eclipse.koneki.simulators.omadm.basic;version="0.1.0",
- org.eclipse.koneki.simulators.omadm.fumo;version="0.1.0"
+Import-Package: org.eclipse.koneki.protocols.omadm;version="0.8.0",
+ org.eclipse.koneki.protocols.omadm.client;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.basic;version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.fumo;version="0.8.0"
 Require-Bundle: org.eclipse.emf.edit;bundle-version="2.6.0",
- org.eclipse.koneki.simulators.omadm.model;bundle-version="0.1.0"
+ org.eclipse.koneki.simulators.omadm.model;bundle-version="0.8.0"
 Service-Component: OSGI-INF/DMFumoAutomaticExecHandlerComponent.xml
 Export-Package: org.eclipse.koneki.simulators.omadm.fumo.automatic.internal;x-internal:=true
