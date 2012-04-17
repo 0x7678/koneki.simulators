@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Omadm
+Bundle-SymbolicName: org.eclipse.koneki.simulators.omadm.thing2oma;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SWIR
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.6.0",
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipse.ui,
+ com.swir.avop.app.model;bundle-version="1.0.0",
+ org.eclipse.koneki.models.things;bundle-version="0.8.0",
+ org.eclipse.koneki.protocols.omadm;bundle-version="0.8.0",
+ org.eclipse.koneki.simulators.omadm.model;bundle-version="0.8.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.koneki.simulators.omadm.thing2oma.internal.handlers;x-internal:=true
+Bundle-Activator: org.eclipse.koneki.simulators.omadm.thing2oma.internal.Activator
+Bundle-ActivationPolicy: lazy

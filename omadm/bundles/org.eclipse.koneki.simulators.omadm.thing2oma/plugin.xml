@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Koneki models"
+            id="org.eclipse.koneki.simulators.omadm.commands.category">
+      </category>
+      <command
+            name="Convert to OMA-DM simulation"
+            categoryId="org.eclipse.koneki.simulators.omadm.commands.category"
+            id="com.swir.avop.appmodel.to.omadm.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.swir.avop.appmodel.to.omadm.commands.sampleCommand"
+            class="org.eclipse.koneki.simulators.omadm.thing2oma.internal.handlers.ConvertToOMASimulationHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.swir.avop.appmodel.to.omadm.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Koneki"
+               mnemonic="M"
+               id="com.swir.avop.appmodel.to.omadm.menus.sampleMenu">
+            <command
+                  commandId="com.swir.avop.appmodel.to.omadm.commands.sampleCommand"
+                  mnemonic="S"
+                  id="com.swir.avop.appmodel.to.omadm.menus.sampleCommand">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.swir.avop.appmodel.to.omadm.toolbars.sampleToolbar">
+            <command
+                  commandId="com.swir.avop.appmodel.to.omadm.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  tooltip="Convert to OMA-DM simulation"
+                  id="com.swir.avop.appmodel.to.omadm.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
