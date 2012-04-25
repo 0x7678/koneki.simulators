@@ -27,8 +27,12 @@
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
+    <category
+	   id = "org.eclipse.koneki.simulators.omadm.wizard"
+	   name="M2M simulators">
+	</category>
       <wizard
-            category="org.eclipse.koneki.simulators"
+            category="org.eclipse.koneki.simulators.omadm.wizard"
             class="org.eclipse.koneki.simulators.omadm.editor.wizards.NewOMADMSimulationWizard"
             finalPerspective="com.anwrt.platform.perspective"
             hasPages="true"
