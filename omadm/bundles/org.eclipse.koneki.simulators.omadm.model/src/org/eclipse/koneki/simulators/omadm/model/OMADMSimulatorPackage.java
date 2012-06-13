@@ -155,12 +155,21 @@ public interface OMADMSimulatorPackage extends EPackage {
 	int DEVICE__SERVER_URL = 5;
 
 	/**
+	 * The feature id for the '<em><b>Authentication</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE__AUTHENTICATION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Device</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_FEATURE_COUNT = 6;
+	int DEVICE_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.koneki.simulators.omadm.model.impl.NodeImpl <em>Node</em>}' class.
@@ -355,6 +364,16 @@ public interface OMADMSimulatorPackage extends EPackage {
 	int COMMAND_MANAGEMENT = 5;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.koneki.simulators.omadm.model.AuthenticationType <em>Authentication Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.koneki.simulators.omadm.model.AuthenticationType
+	 * @see org.eclipse.koneki.simulators.omadm.model.impl.OMADMSimulatorPackageImpl#getAuthenticationType()
+	 * @generated
+	 */
+	int AUTHENTICATION_TYPE = 6;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.koneki.simulators.omadm.model.OMADMSimulation <em>OMADM Simulation</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
@@ -449,6 +468,17 @@ public interface OMADMSimulatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDevice_ServerUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication <em>Authentication</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Authentication</em>'.
+	 * @see org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication()
+	 * @see #getDevice()
+	 * @generated
+	 */
+	EAttribute getDevice_Authentication();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.koneki.simulators.omadm.model.Node <em>Node</em>}'.
@@ -684,6 +714,16 @@ public interface OMADMSimulatorPackage extends EPackage {
 	EEnum getCommandManagement();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.koneki.simulators.omadm.model.AuthenticationType <em>Authentication Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Authentication Type</em>'.
+	 * @see org.eclipse.koneki.simulators.omadm.model.AuthenticationType
+	 * @generated
+	 */
+	EEnum getAuthenticationType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -775,6 +815,14 @@ public interface OMADMSimulatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DEVICE__SERVER_URL = eINSTANCE.getDevice_ServerUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Authentication</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEVICE__AUTHENTICATION = eINSTANCE.getDevice_Authentication();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.koneki.simulators.omadm.model.impl.NodeImpl <em>Node</em>}' class.
@@ -942,6 +990,16 @@ public interface OMADMSimulatorPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum COMMAND_MANAGEMENT = eINSTANCE.getCommandManagement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.koneki.simulators.omadm.model.AuthenticationType <em>Authentication Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.koneki.simulators.omadm.model.AuthenticationType
+		 * @see org.eclipse.koneki.simulators.omadm.model.impl.OMADMSimulatorPackageImpl#getAuthenticationType()
+		 * @generated
+		 */
+		EEnum AUTHENTICATION_TYPE = eINSTANCE.getAuthenticationType();
 
 	}
 

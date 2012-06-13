@@ -32,6 +32,8 @@ public class Messages extends NLS {
 	public static String ConfigurationPage_SaveSettings;
 	public static String ConfigurationPage_DeviceID;
 
+	public static String ConfigurationPage_AuthenticationType;
+
 	public static String DeviceSection_Title;
 	public static String DeviceSection_Description;
 

@@ -25,13 +25,12 @@ import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
  * <p>
  * The following features are tested:
  * <ul>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getDeviceId() <em>Device Id</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin() <em>Login</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getPassword() <em>Password</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getServerUrl() <em>Server Url</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getDeviceId() <em>Device Id</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin() <em>Login</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getPassword() <em>Password</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getServerUrl() <em>Server Url</em>}</li>
  * </ul>
  * </p>
- * 
  * @generated
  */
 public class DeviceTest extends TestCase {
@@ -81,15 +80,14 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The fixture for this Device test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Device fixture = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -97,8 +95,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Device test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Constructs a new Device test case with the given name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DeviceTest(String name) {
@@ -106,8 +104,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the fixture for this Device test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void setFixture(Device fixture) {
@@ -115,8 +113,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the fixture for this Device test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Device getFixture() {
@@ -125,7 +123,6 @@ public class DeviceTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -136,7 +133,6 @@ public class DeviceTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */

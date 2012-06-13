@@ -87,6 +87,8 @@ public class OMADMSimulatorFactoryImpl extends EFactoryImpl implements OMADMSimu
 				return createNodeFormatFromString(eDataType, initialValue);
 			case OMADMSimulatorPackage.COMMAND_MANAGEMENT:
 				return createCommandManagementFromString(eDataType, initialValue);
+			case OMADMSimulatorPackage.AUTHENTICATION_TYPE:
+				return createAuthenticationTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -105,6 +107,8 @@ public class OMADMSimulatorFactoryImpl extends EFactoryImpl implements OMADMSimu
 				return convertNodeFormatToString(eDataType, instanceValue);
 			case OMADMSimulatorPackage.COMMAND_MANAGEMENT:
 				return convertCommandManagementToString(eDataType, instanceValue);
+			case OMADMSimulatorPackage.AUTHENTICATION_TYPE:
+				return convertAuthenticationTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -188,6 +192,26 @@ public class OMADMSimulatorFactoryImpl extends EFactoryImpl implements OMADMSimu
 	 * @generated
 	 */
 	public String convertCommandManagementToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AuthenticationType createAuthenticationTypeFromString(EDataType eDataType, String initialValue) {
+		AuthenticationType result = AuthenticationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAuthenticationTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -28,26 +28,25 @@ import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
  * <p>
  * The following operations are tested:
  * <ul>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getPath() <em>Get Path</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRoot() <em>Get Root</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealGetManagement() <em>Get Real Get Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealAddManagement() <em>Get Real Add Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealDeleteManagement() <em>Get Real Delete Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealCopyManagement() <em>Get Real Copy Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealReplaceManagement() <em>Get Real Replace Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealExecManagement() <em>Get Real Exec Management</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealGetCode() <em>Get Real Get Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealAddCode() <em>Get Real Add Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealDeleteCode() <em>Get Real Delete Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealCopyCode() <em>Get Real Copy Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealReplaceCode() <em>Get Real Replace Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealExecCode() <em>Get Real Exec Code</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isRoot() <em>Is Root</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isInterior() <em>Is Interior</em>}</li>
- * <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isLeaf() <em>Is Leaf</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getPath() <em>Get Path</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRoot() <em>Get Root</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealGetManagement() <em>Get Real Get Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealAddManagement() <em>Get Real Add Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealDeleteManagement() <em>Get Real Delete Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealCopyManagement() <em>Get Real Copy Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealReplaceManagement() <em>Get Real Replace Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealExecManagement() <em>Get Real Exec Management</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealGetCode() <em>Get Real Get Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealAddCode() <em>Get Real Add Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealDeleteCode() <em>Get Real Delete Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealCopyCode() <em>Get Real Copy Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealReplaceCode() <em>Get Real Replace Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#getRealExecCode() <em>Get Real Exec Code</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isRoot() <em>Is Root</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isInterior() <em>Is Interior</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Node#isLeaf() <em>Is Leaf</em>}</li>
  * </ul>
  * </p>
- * 
  * @generated
  */
 public class NodeTest extends TestCase {
@@ -61,15 +60,14 @@ public class NodeTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Node test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The fixture for this Node test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Node fixture = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -77,8 +75,8 @@ public class NodeTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Node test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Constructs a new Node test case with the given name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NodeTest(String name) {
@@ -86,8 +84,8 @@ public class NodeTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Node test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the fixture for this Node test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void setFixture(Node fixture) {
@@ -95,8 +93,8 @@ public class NodeTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Node test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the fixture for this Node test case.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Node getFixture() {
@@ -105,7 +103,6 @@ public class NodeTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -116,7 +113,6 @@ public class NodeTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */

@@ -65,6 +65,7 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
 			addLoginPropertyDescriptor(object);
 			addPasswordPropertyDescriptor(object);
 			addServerUrlPropertyDescriptor(object);
+			addAuthenticationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -180,6 +181,28 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
 	}
 
 	/**
+	 * This adds a property descriptor for the Authentication feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAuthenticationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Device_authentication_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Device_authentication_feature", "_UI_Device_type"),
+				 OMADMSimulatorPackage.Literals.DEVICE__AUTHENTICATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -245,6 +268,7 @@ public class DeviceItemProvider extends ItemProviderAdapter implements IEditingD
 			case OMADMSimulatorPackage.DEVICE__LOGIN:
 			case OMADMSimulatorPackage.DEVICE__PASSWORD:
 			case OMADMSimulatorPackage.DEVICE__SERVER_URL:
+			case OMADMSimulatorPackage.DEVICE__AUTHENTICATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case OMADMSimulatorPackage.DEVICE__TREE:

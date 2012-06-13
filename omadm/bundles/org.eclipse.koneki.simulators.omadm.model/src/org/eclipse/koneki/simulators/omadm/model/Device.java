@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin <em>Login</em>}</li>
  *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getPassword <em>Password</em>}</li>
  *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getServerUrl <em>Server Url</em>}</li>
+ *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication <em>Authentication</em>}</li>
  * </ul>
  * </p>
  *
@@ -189,5 +190,34 @@ public interface Device extends EObject {
 	 * @generated
 	 */
 	void setServerUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Authentication</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.koneki.simulators.omadm.model.AuthenticationType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Authentication</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Authentication</em>' attribute.
+	 * @see org.eclipse.koneki.simulators.omadm.model.AuthenticationType
+	 * @see #setAuthentication(AuthenticationType)
+	 * @see org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage#getDevice_Authentication()
+	 * @model required="true"
+	 * @generated
+	 */
+	AuthenticationType getAuthentication();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication <em>Authentication</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Authentication</em>' attribute.
+	 * @see org.eclipse.koneki.simulators.omadm.model.AuthenticationType
+	 * @see #getAuthentication()
+	 * @generated
+	 */
+	void setAuthentication(AuthenticationType value);
 
 } // Device

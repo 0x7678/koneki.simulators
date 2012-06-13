@@ -40,6 +40,10 @@
       <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//CommandManagement/MANUAL"/>
       <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//CommandManagement/CONSTANT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="omadmsimulation.ecore#//AuthenticationType">
+      <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/BASIC"/>
+      <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/NONE"/>
+    </genEnums>
     <genClasses ecoreClass="omadmsimulation.ecore#//OMADMSimulation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference omadmsimulation.ecore#//OMADMSimulation/device"/>
     </genClasses>
@@ -50,6 +54,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute omadmsimulation.ecore#//Device/login"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute omadmsimulation.ecore#//Device/password"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute omadmsimulation.ecore#//Device/serverUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute omadmsimulation.ecore#//Device/authentication"/>
     </genClasses>
     <genClasses ecoreClass="omadmsimulation.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute omadmsimulation.ecore#//Node/name"/>

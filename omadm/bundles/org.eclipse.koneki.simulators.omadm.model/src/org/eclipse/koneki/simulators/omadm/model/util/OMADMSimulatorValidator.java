@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.koneki.simulators.omadm.model.*;
 import org.eclipse.koneki.simulators.omadm.model.CommandManagement;
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.DeviceIdType;
@@ -40,22 +41,20 @@ import org.eclipse.koneki.simulators.omadm.model.internal.OMADMSimulationModelPl
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
- * 
  * @see org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage
  * @generated
  */
 public class OMADMSimulatorValidator extends EObjectValidator {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final OMADMSimulatorValidator INSTANCE = new OMADMSimulatorValidator();
 
 	/**
-	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
-	 * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
@@ -63,24 +62,24 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.koneki.simulators.omadm.model";
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for additional hand written constants. <!-- begin-user-doc --> <!--
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class. <!-- begin-user-doc
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OMADMSimulatorValidator() {
@@ -88,43 +87,44 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Returns the package of this validator switch. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the package of this validator switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EPackage getEPackage() {
-		return OMADMSimulatorPackage.eINSTANCE;
+	  return OMADMSimulatorPackage.eINSTANCE;
 	}
 
 	/**
-	 * Calls <code>validateXXX</code> for the corresponding classifier of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-		case OMADMSimulatorPackage.OMADM_SIMULATION:
-			return validateOMADMSimulation((OMADMSimulation) value, diagnostics, context);
-		case OMADMSimulatorPackage.DEVICE:
-			return validateDevice((Device) value, diagnostics, context);
-		case OMADMSimulatorPackage.NODE:
-			return validateNode((Node) value, diagnostics, context);
-		case OMADMSimulatorPackage.DEVICE_ID_TYPE:
-			return validateDeviceIdType((DeviceIdType) value, diagnostics, context);
-		case OMADMSimulatorPackage.NODE_FORMAT:
-			return validateNodeFormat((NodeFormat) value, diagnostics, context);
-		case OMADMSimulatorPackage.COMMAND_MANAGEMENT:
-			return validateCommandManagement((CommandManagement) value, diagnostics, context);
-		default:
-			return true;
+			case OMADMSimulatorPackage.OMADM_SIMULATION:
+				return validateOMADMSimulation((OMADMSimulation)value, diagnostics, context);
+			case OMADMSimulatorPackage.DEVICE:
+				return validateDevice((Device)value, diagnostics, context);
+			case OMADMSimulatorPackage.NODE:
+				return validateNode((Node)value, diagnostics, context);
+			case OMADMSimulatorPackage.DEVICE_ID_TYPE:
+				return validateDeviceIdType((DeviceIdType)value, diagnostics, context);
+			case OMADMSimulatorPackage.NODE_FORMAT:
+				return validateNodeFormat((NodeFormat)value, diagnostics, context);
+			case OMADMSimulatorPackage.COMMAND_MANAGEMENT:
+				return validateCommandManagement((CommandManagement)value, diagnostics, context);
+			case OMADMSimulatorPackage.AUTHENTICATION_TYPE:
+				return validateAuthenticationType((AuthenticationType)value, diagnostics, context);
+			default:
+				return true;
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateOMADMSimulation(OMADMSimulation omadmSimulation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -133,41 +133,108 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateDevice(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(device, diagnostics, context))
-			return false;
+		if (!validate_NoCircularContainment(device, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_UniqueID(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateDevice_deviceIdMustBeValid(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateDevice_rootNodeCategoryMustBeValid(device, diagnostics, context);
-		/*
-		 * Add new tests validator
-		 */
-		if (result || diagnostics != null)
-			result &= validateDevice_serverURLMustBeValid(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateDevice_loginMustBeValid(device, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateDevice_passwordURLMustBeValid(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDevice_groupPathMustBeAValidPath(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDevice_modelNameMustBeValid(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDevice_customerPathMustBeAValidPath(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDevice_deviceIdMustBeValid(device, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDevice_rootNodeCategoryMustBeValid(device, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the groupPathMustBeAValidPath constraint of '<em>Device</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDevice_groupPathMustBeAValidPath(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "groupPathMustBeAValidPath", getObjectLabel(device, context) },
+						 new Object[] { device },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the modelNameMustBeValid constraint of '<em>Device</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDevice_modelNameMustBeValid(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "modelNameMustBeValid", getObjectLabel(device, context) },
+						 new Object[] { device },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the customerPathMustBeAValidPath constraint of '<em>Device</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDevice_customerPathMustBeAValidPath(Device device, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "customerPathMustBeAValidPath", getObjectLabel(device, context) },
+						 new Object[] { device },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -258,43 +325,26 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateNode(Node node, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(node, diagnostics, context))
-			return false;
+		if (!validate_NoCircularContainment(node, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_UniqueID(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_nodeNameMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_nodeFormatMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_nodeTypeMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_nodeDataMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_nodeManagementMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_childrenMustBeAuthorized(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_childrenCategoryMustBeValid(node, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateNode_childrenNameMustBeUnique(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nodeNameMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nodeFormatMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nodeTypeMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nodeDataMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nodeManagementMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_childrenMustBeAuthorized(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_childrenCategoryMustBeValid(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_childrenNameMustBeUnique(node, diagnostics, context);
 		return result;
 	}
 
@@ -454,7 +504,6 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateDeviceIdType(DeviceIdType deviceIdType, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -463,7 +512,6 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateNodeFormat(NodeFormat nodeFormat, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -472,10 +520,18 @@ public class OMADMSimulatorValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateCommandManagement(CommandManagement commandManagement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAuthenticationType(AuthenticationType authenticationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

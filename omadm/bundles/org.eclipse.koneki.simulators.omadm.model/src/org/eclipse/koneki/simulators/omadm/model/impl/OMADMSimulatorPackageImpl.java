@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.CommandManagement;
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.DeviceIdType;
@@ -68,6 +69,13 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 	 * @generated
 	 */
 	private EEnum commandManagementEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum authenticationTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -211,6 +219,15 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 	 */
 	public EAttribute getDevice_ServerUrl() {
 		return (EAttribute)deviceEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDevice_Authentication() {
+		return (EAttribute)deviceEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -390,6 +407,15 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAuthenticationType() {
+		return authenticationTypeEEnum;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -425,6 +451,7 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 		createEAttribute(deviceEClass, DEVICE__LOGIN);
 		createEAttribute(deviceEClass, DEVICE__PASSWORD);
 		createEAttribute(deviceEClass, DEVICE__SERVER_URL);
+		createEAttribute(deviceEClass, DEVICE__AUTHENTICATION);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
@@ -450,6 +477,7 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 		deviceIdTypeEEnum = createEEnum(DEVICE_ID_TYPE);
 		nodeFormatEEnum = createEEnum(NODE_FORMAT);
 		commandManagementEEnum = createEEnum(COMMAND_MANAGEMENT);
+		authenticationTypeEEnum = createEEnum(AUTHENTICATION_TYPE);
 	}
 
 	/**
@@ -490,6 +518,7 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 		initEAttribute(getDevice_Login(), ecorePackage.getEString(), "login", null, 0, 1, Device.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDevice_Password(), ecorePackage.getEString(), "password", null, 0, 1, Device.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDevice_ServerUrl(), ecorePackage.getEString(), "serverUrl", null, 1, 1, Device.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDevice_Authentication(), this.getAuthenticationType(), "authentication", null, 1, 1, Device.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -569,6 +598,10 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 		addEEnumLiteral(commandManagementEEnum, CommandManagement.AUTOMATIC);
 		addEEnumLiteral(commandManagementEEnum, CommandManagement.MANUAL);
 		addEEnumLiteral(commandManagementEEnum, CommandManagement.CONSTANT);
+
+		initEEnum(authenticationTypeEEnum, AuthenticationType.class, "AuthenticationType");
+		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.BASIC);
+		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.NONE);
 
 		// Create resource
 		createResource(eNS_URI);

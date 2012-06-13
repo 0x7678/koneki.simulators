@@ -25,6 +25,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverUrl" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" transient="true"
         derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="authentication" lowerBound="1"
+        eType="#//AuthenticationType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DeviceIdType">
     <eLiterals name="FREE" literal="free"/>
@@ -104,5 +106,9 @@
     <eLiterals name="AUTOMATIC" value="1" literal="automatic"/>
     <eLiterals name="MANUAL" value="2" literal="manual"/>
     <eLiterals name="CONSTANT" value="3" literal="constant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AuthenticationType">
+    <eLiterals name="BASIC" literal="basic"/>
+    <eLiterals name="NONE" value="1" literal="none"/>
   </eClassifiers>
 </ecore:EPackage>

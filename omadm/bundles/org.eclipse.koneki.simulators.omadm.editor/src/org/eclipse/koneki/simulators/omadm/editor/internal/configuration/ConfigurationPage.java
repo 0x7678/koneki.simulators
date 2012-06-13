@@ -11,6 +11,7 @@
 package org.eclipse.koneki.simulators.omadm.editor.internal.configuration;
 
 import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -18,11 +19,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.koneki.commons.ui.ANWRTToolkit;
 import org.eclipse.koneki.commons.ui.CommonFonts;
 import org.eclipse.koneki.commons.ui.widgets.InfoBanner;
 import org.eclipse.koneki.simulators.omadm.editor.Messages;
 import org.eclipse.koneki.simulators.omadm.editor.OMADMSimulatorEditor;
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
+import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage;
 import org.eclipse.pde.emfforms.editor.AbstractEmfFormPage;
 import org.eclipse.swt.SWT;
@@ -36,14 +41,19 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 	private Text serverURI;
 	private Text serverLogin;
 	private Text serverPassword;
+	private ComboViewer authenticationType;
 	// private Shell currentShell;
 	private Text deviceIdText;
+
+	private OMADMSimulatorEditor editor;
 
 	// private Button associateModelButton;
 	// private Label associatedModel;
 
 	public ConfigurationPage(OMADMSimulatorEditor editor) {
 		super(editor, 1, Messages.ConfigurationPage_Title);
+
+		this.editor = editor;
 	}
 
 	@Override
@@ -53,6 +63,33 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 
 	@Override
 	public void bind(DataBindingContext bindingContext) {
+
+		final UpdateValueStrategy targetToModel = new UpdateValueStrategy() {
+
+			@Override
+			public Object convert(Object value) {
+				Device device = editor.getOMADMSimulation().getDevice();
+				AuthenticationType auth = AuthenticationType.get(value.toString());
+				device.setAuthentication(auth);
+
+				return auth;
+			}
+
+		};
+		final UpdateValueStrategy modelToTarget = new UpdateValueStrategy() {
+
+			@Override
+			public Object convert(Object value) {
+
+				Device device = editor.getOMADMSimulation().getDevice();
+				AuthenticationType auth = device.getAuthentication();
+				authenticationType.setSelection(new StructuredSelection(auth));
+
+				return auth;
+			}
+
+		};
+
 		final EditingDomain editingDomain = getEditor().getEditingDomain();
 		final IObservableValue simulationObservable = getEditor().getInputObservable();
 		final IObservableValue deviceObservable = EMFEditObservables.observeDetailValue(Realm.getDefault(), editingDomain, simulationObservable,
@@ -73,6 +110,11 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 		// DeviceId
 		bindingContext.bindValue(WidgetProperties.text(SWT.Modify).observe(this.deviceIdText), EMFEditObservables.observeDetailValue(
 				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.DEVICE__DEVICE_ID));
+
+		// AuthenticationType
+		bindingContext.bindValue(WidgetProperties.selection().observe(this.authenticationType.getCombo()), EMFEditObservables.observeDetailValue(
+				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.AUTHENTICATION_TYPE.eContainingFeature()),
+				targetToModel, modelToTarget);
 	}
 
 	@Override
@@ -117,6 +159,12 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 		deviceIdText = toolkit.createTitleLabelAndText(serverSettingsComposite, Messages.ConfigurationPage_DeviceID);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 0).applyTo(deviceIdText);
 
+		authenticationType = toolkit.createTitleLabelAndComboViewer(serverSettingsComposite, Messages.ConfigurationPage_AuthenticationType,
+				SWT.DEFAULT);
+		authenticationType.add(AuthenticationType.values());
+		authenticationType.setSelection(new StructuredSelection(AuthenticationType.NONE));
+		GridDataFactory.fillDefaults().grab(false, false).span(0, 0).applyTo(authenticationType.getControl());
+
 		// The association button
 		//
 		// Label associateLabel = toolkit.createTitleLabel(serverSettingsComposite, Messages.SimulationPage_AssociateLabel);
@@ -143,6 +191,11 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 		serverSettingsSection.setClient(serverSettingsComposite);
 
 		getEditor();
+	}
+
+	public int getAuthenticationValue() {
+		// return authenticationType.
+		return 0;
 	}
 
 	@Override
