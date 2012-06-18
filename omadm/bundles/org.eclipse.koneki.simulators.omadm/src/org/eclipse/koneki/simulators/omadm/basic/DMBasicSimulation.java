@@ -18,6 +18,7 @@ import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.koneki.protocols.omadm.CommandHandler;
+import org.eclipse.koneki.protocols.omadm.DMAuthentication;
 import org.eclipse.koneki.protocols.omadm.DMGenericAlert;
 import org.eclipse.koneki.protocols.omadm.DMNode;
 import org.eclipse.koneki.protocols.omadm.ProtocolListener;
@@ -25,6 +26,7 @@ import org.eclipse.koneki.protocols.omadm.Status;
 import org.eclipse.koneki.protocols.omadm.StatusCode;
 import org.eclipse.koneki.simulators.omadm.DMSimulatorException;
 import org.eclipse.koneki.simulators.omadm.internal.Activator;
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.Node;
 import org.eclipse.koneki.simulators.omadm.model.NodeFormat;
 import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
@@ -43,12 +45,27 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 	private final CommandHandler commandHandler;
 	private final ProtocolListener[] protocolListeners;
 	private final DMGenericAlert[] genericAlerts;
+	private final AuthenticationType authentication;
 
 	public DMBasicSimulation(final DMBasicSimulator dmSimulator, final URI server, final Node tree, final EditingDomain editingDomain,
 			final CommandHandler commandHandler, final ProtocolListener[] protocolListeners, final DMGenericAlert[] genericAlerts) {
 		this.dmSimulator = dmSimulator;
 		this.server = server;
 		this.tree = tree;
+		this.authentication = AuthenticationType.NONE;
+		this.editingDomain = editingDomain;
+		this.commandHandler = commandHandler;
+		this.protocolListeners = protocolListeners;
+		this.genericAlerts = genericAlerts;
+	}
+
+	public DMBasicSimulation(final DMBasicSimulator dmSimulator, final URI server, final Node tree, final AuthenticationType authentication,
+			final EditingDomain editingDomain, final CommandHandler commandHandler, final ProtocolListener[] protocolListeners,
+			final DMGenericAlert[] genericAlerts) {
+		this.dmSimulator = dmSimulator;
+		this.server = server;
+		this.tree = tree;
+		this.authentication = authentication;
 		this.editingDomain = editingDomain;
 		this.commandHandler = commandHandler;
 		this.protocolListeners = protocolListeners;
@@ -86,16 +103,25 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 
 			});
 
-			/*
-			 * Create a Base64 code with the user name and user password value
-			 */
-			String userName = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_NAME).getData();
-			String userPassword = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_SECRET).getData();
-			String userAuth = userName + ":" + userPassword; //$NON-NLS-1$
-			byte[] encoded = Base64.encodeBase64(userAuth.getBytes());
+			DMAuthentication dmAuth = null;
 
-			this.dmSimulator.getDMClient().initiateManagementSession(this.server, new String(encoded), client, devInfoNodes.toArray(new DMNode[0]),
-					this, this.protocolListeners, this.genericAlerts);
+			switch (authentication.getValue()) {
+			case (AuthenticationType.NONE_VALUE):
+				dmAuth = new DMAuthentication();
+				break;
+			case (AuthenticationType.BASIC_VALUE):
+				/*
+				 * Create a Base64 code with the user name and user password value
+				 */
+				String userName = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_NAME).getData();
+				String userPassword = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_SECRET).getData();
+				String userAuth = userName + ":" + userPassword; //$NON-NLS-1$
+				dmAuth = new DMAuthentication(Base64.encodeBase64(userAuth.getBytes()));
+				break;
+			}
+
+			this.dmSimulator.getDMClient().initiateManagementSession(this.server, dmAuth, client, devInfoNodes.toArray(new DMNode[0]), this,
+					this.protocolListeners, this.genericAlerts);
 		} catch (final DMSimulatorException e) {
 			Activator.logError("Problem while initializing management session", e); //$NON-NLS-1$
 		}

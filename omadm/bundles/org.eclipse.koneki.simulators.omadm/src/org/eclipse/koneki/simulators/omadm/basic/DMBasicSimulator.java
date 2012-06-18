@@ -26,6 +26,7 @@ import org.eclipse.koneki.protocols.omadm.Status;
 import org.eclipse.koneki.protocols.omadm.StatusCode;
 import org.eclipse.koneki.protocols.omadm.client.DMClient;
 import org.eclipse.koneki.simulators.omadm.DMSimulator;
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.Node;
 
 /**
@@ -176,6 +177,17 @@ public class DMBasicSimulator implements DMSimulator {
 			throw new NullPointerException();
 		}
 		this.executorService.execute(new DMBasicSimulation(this, server, tree, editingDomain, commandHandler, protocolListeners, genericAlerts));
+	}
+
+	@Override
+	public void simulate(final URI server, final Node tree, final AuthenticationType authentication, final EditingDomain editingDomain,
+			final CommandHandler commandHandler, final ProtocolListener[] protocolListeners, final DMGenericAlert[] genericAlerts) {
+		if (server == null || tree == null || authentication == null || editingDomain == null || commandHandler == null || protocolListeners == null
+				|| genericAlerts == null) {
+			throw new NullPointerException();
+		}
+		this.executorService.execute(new DMBasicSimulation(this, server, tree, authentication, editingDomain, commandHandler, protocolListeners,
+				genericAlerts));
 	}
 
 	final DMClient getDMClient() {

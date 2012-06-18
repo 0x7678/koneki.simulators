@@ -22,6 +22,7 @@ import org.eclipse.koneki.protocols.omadm.client.DMClient;
 import org.eclipse.koneki.simulators.omadm.DMSimulator;
 import org.eclipse.koneki.simulators.omadm.basic.DMBasicSimulator;
 import org.eclipse.koneki.simulators.omadm.basic.DMExecHandler;
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.Node;
 import org.osgi.service.component.ComponentContext;
 
@@ -81,4 +82,8 @@ public class DMBasicSimulatorComponent implements DMSimulator {
 		this.simulator.simulate(server, tree, editingDomain, commandHandler, protocolListeners, genericAlerts);
 	}
 
+	public void simulate(final URI server, final Node tree, final AuthenticationType authentication, final EditingDomain editingDomain,
+			final CommandHandler commandHandler, final ProtocolListener[] protocolListeners, final DMGenericAlert[] genericAlerts) {
+		this.simulator.simulate(server, tree, authentication, editingDomain, commandHandler, protocolListeners, genericAlerts);
+	}
 }

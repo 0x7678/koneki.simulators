@@ -93,7 +93,7 @@ class ConnectSelection extends SelectionAdapter {
 		updateServerURI(editor);
 
 		// Connect
-		dmSimulator.simulate(server, page.getEditor().getOMADMSimulation().getDevice().getTree(), page.getEditor().getOMADMSimulation().getDevice()
+		dmSimulator.simulate(server, page.getEditor().getOMADMSimulation().getDevice().getTree(), editor.getOMADMSimulation().getDevice()
 				.getAuthentication(), page.getEditor().getEditingDomain(), new ConnectCommandHandler(page),
 				new ProtocolListener[] { new ConnectProtocolListener(page) }, genericAlerts.toArray(new DMGenericAlert[] {}));
 		if (monitor.isCanceled()) {
