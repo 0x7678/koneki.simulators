@@ -110,5 +110,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="AuthenticationType">
     <eLiterals name="BASIC" literal="basic"/>
     <eLiterals name="NONE" value="1" literal="none"/>
+    <eLiterals name="HMAC" value="2" literal="hmac"/>
+    <eLiterals name="MD5" value="3" literal="md5"/>
   </eClassifiers>
 </ecore:EPackage>

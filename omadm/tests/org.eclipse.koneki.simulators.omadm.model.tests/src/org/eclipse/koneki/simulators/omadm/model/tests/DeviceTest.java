@@ -14,6 +14,7 @@ import java.util.Map;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
+import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.Device;
 import org.eclipse.koneki.simulators.omadm.model.DeviceIdType;
 import org.eclipse.koneki.simulators.omadm.model.Node;
@@ -25,12 +26,13 @@ import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
  * <p>
  * The following features are tested:
  * <ul>
- *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getDeviceId() <em>Device Id</em>}</li>
- *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin() <em>Login</em>}</li>
- *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getPassword() <em>Password</em>}</li>
- *   <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getServerUrl() <em>Server Url</em>}</li>
+ * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getDeviceId() <em>Device Id</em>}</li>
+ * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin() <em>Login</em>}</li>
+ * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getPassword() <em>Password</em>}</li>
+ * <li>{@link org.eclipse.koneki.simulators.omadm.model.Device#getServerUrl() <em>Server Url</em>}</li>
  * </ul>
  * </p>
+ * 
  * @generated
  */
 public class DeviceTest extends TestCase {
@@ -80,14 +82,15 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * The fixture for this Device test case.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Device fixture = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -95,8 +98,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Device test case with the given name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructs a new Device test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeviceTest(String name) {
@@ -104,8 +107,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Device test case.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void setFixture(Device fixture) {
@@ -113,8 +116,8 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Device test case.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the fixture for this Device test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Device getFixture() {
@@ -123,6 +126,7 @@ public class DeviceTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -133,6 +137,7 @@ public class DeviceTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -212,6 +217,32 @@ public class DeviceTest extends TestCase {
 	}
 
 	/**
+	 * Tests the '{@link org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication() <em>Login</em>}' feature getter. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.koneki.simulators.omadm.model.Device#getAuthentication()
+	 * @generated NOT
+	 */
+	public void testGetAuthentication() {
+		initDevice();
+		Node testedNode = NodeHelpers.findFirstNode(NodeHelpers.getNode(getFixture().getTree(), "./DMAcc"), "AuthPref");
+
+		for (AuthenticationType auth : AuthenticationType.values()) {
+			testedNode.setData(auth.getName());
+			assertEquals(auth, getFixture().getAuthentication());
+		}
+
+		Map<String, AuthenticationType> tests = new HashMap<String, AuthenticationType>();
+		tests.put("Foo", AuthenticationType.BASIC);
+		tests.put("", AuthenticationType.BASIC);
+
+		for (Map.Entry<String, AuthenticationType> t : tests.entrySet()) {
+			testedNode.setData(t.getKey());
+			assertEquals(t.getValue(), getFixture().getAuthentication());
+		}
+	}
+
+	/**
 	 * Tests the '{@link org.eclipse.koneki.simulators.omadm.model.Device#getLogin() <em>Login</em>}' feature getter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -272,6 +303,24 @@ public class DeviceTest extends TestCase {
 		for (Map.Entry<String, String> t : tests.entrySet()) {
 			testedNode.setData(t.getKey());
 			assertEquals(t.getValue(), getFixture().getPassword());
+		}
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.koneki.simulators.omadm.model.Device#setAuthentication(Authentication) <em>Password</em>}' feature setter. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.koneki.simulators.omadm.model.Device#setAuthentication(Authentication)
+	 * @generated NOT
+	 */
+	public void testSetAuthentication() {
+
+		initDevice();
+
+		for (AuthenticationType auth : AuthenticationType.values()) {
+			getFixture().setAuthentication(auth);
+			assertEquals(auth.getName(), getFixture().getAuthentication().getName());
+			assertEquals(auth.getName(), NodeHelpers.findFirstNode(NodeHelpers.getNode(getFixture().getTree(), "./DMAcc"), "AuthPref").getData());
 		}
 	}
 

@@ -602,6 +602,8 @@ public class OMADMSimulatorPackageImpl extends EPackageImpl implements OMADMSimu
 		initEEnum(authenticationTypeEEnum, AuthenticationType.class, "AuthenticationType");
 		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.BASIC);
 		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.NONE);
+		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.HMAC);
+		addEEnumLiteral(authenticationTypeEEnum, AuthenticationType.MD5);
 
 		// Create resource
 		createResource(eNS_URI);

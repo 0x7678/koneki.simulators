@@ -28,7 +28,9 @@ import org.eclipse.koneki.simulators.omadm.editor.Messages;
 import org.eclipse.koneki.simulators.omadm.editor.OMADMSimulatorEditor;
 import org.eclipse.koneki.simulators.omadm.model.AuthenticationType;
 import org.eclipse.koneki.simulators.omadm.model.Device;
+import org.eclipse.koneki.simulators.omadm.model.Node;
 import org.eclipse.koneki.simulators.omadm.model.OMADMSimulatorPackage;
+import org.eclipse.koneki.simulators.omadm.model.util.NodeHelpers;
 import org.eclipse.pde.emfforms.editor.AbstractEmfFormPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -72,6 +74,9 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 				AuthenticationType auth = AuthenticationType.get(value.toString());
 				device.setAuthentication(auth);
 
+				Node authPref = NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), "./DMAcc"), "AuthPref");
+				authPref.setData(auth.getName());
+
 				return auth;
 			}
 
@@ -113,8 +118,8 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 
 		// AuthenticationType
 		bindingContext.bindValue(WidgetProperties.selection().observe(this.authenticationType.getCombo()), EMFEditObservables.observeDetailValue(
-				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.AUTHENTICATION_TYPE.eContainingFeature()),
-				targetToModel, modelToTarget);
+				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.DEVICE__AUTHENTICATION), targetToModel,
+				modelToTarget);
 	}
 
 	@Override

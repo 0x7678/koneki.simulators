@@ -308,6 +308,14 @@
         <element xmi:type="ecore:EEnumLiteral" href="omadmsimulation.ecore#//AuthenticationType/NONE"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_8EraMbU_EeG5SZFd1R_ZqQ"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_KH_6ccQnEeGbRPixwywypQ" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="omadmsimulation.ecore#//AuthenticationType/HMAC"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_KIAhgMQnEeGbRPixwywypQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_s7juQcROEeGvM_YzF1yMnw" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="omadmsimulation.ecore#//AuthenticationType/MD5"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_s7kVUMROEeGvM_YzF1yMnw"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_yErU4bU_EeG5SZFd1R_ZqQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_yErU4rU_EeG5SZFd1R_ZqQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_yErU47U_EeG5SZFd1R_ZqQ"/>

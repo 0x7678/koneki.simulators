@@ -15,7 +15,6 @@ import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.koneki.protocols.omadm.CommandHandler;
 import org.eclipse.koneki.protocols.omadm.DMAuthentication;
@@ -103,22 +102,28 @@ final class DMBasicSimulation implements Runnable, CommandHandler {
 
 			});
 
-			DMAuthentication dmAuth = null;
+			org.eclipse.koneki.protocols.omadm.AuthenticationType authType = null;
 
 			switch (authentication.getValue()) {
 			case (AuthenticationType.NONE_VALUE):
-				dmAuth = new DMAuthentication();
+				// dmAuth = new DMAuthentication();
+				authType = org.eclipse.koneki.protocols.omadm.AuthenticationType.NONE;
 				break;
 			case (AuthenticationType.BASIC_VALUE):
-				/*
-				 * Create a Base64 code with the user name and user password value
-				 */
-				String userName = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_NAME).getData();
-				String userPassword = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_SECRET).getData();
-				String userAuth = userName + ":" + userPassword; //$NON-NLS-1$
-				dmAuth = new DMAuthentication(Base64.encodeBase64(userAuth.getBytes()));
+
+				authType = org.eclipse.koneki.protocols.omadm.AuthenticationType.BASIC;
+				break;
+			case (AuthenticationType.HMAC_VALUE):
+				authType = org.eclipse.koneki.protocols.omadm.AuthenticationType.HMAC;
+				break;
+			case (AuthenticationType.MD5_VALUE):
+				authType = org.eclipse.koneki.protocols.omadm.AuthenticationType.MD5;
 				break;
 			}
+
+			String userName = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_NAME).getData();
+			String userPassword = NodeHelpers.findFirstNode(NodeHelpers.getNode(tree, APP_AUTH), AUTH_SECRET).getData();
+			DMAuthentication dmAuth = new DMAuthentication(authType, userName, userPassword);
 
 			this.dmSimulator.getDMClient().initiateManagementSession(this.server, dmAuth, client, devInfoNodes.toArray(new DMNode[0]), this,
 					this.protocolListeners, this.genericAlerts);

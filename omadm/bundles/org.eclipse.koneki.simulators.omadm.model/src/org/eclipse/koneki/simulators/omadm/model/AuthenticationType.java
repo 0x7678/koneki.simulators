@@ -40,7 +40,23 @@ public enum AuthenticationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NONE(1, "NONE", "none");
+	NONE(1, "NONE", "none"), /**
+	 * The '<em><b>HMAC</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #HMAC_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	HMAC(2, "HMAC", "hmac"), /**
+	 * The '<em><b>MD5</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MD5_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MD5(3, "MD5", "md5");
 
 	/**
 	 * The '<em><b>BASIC</b></em>' literal value.
@@ -73,6 +89,36 @@ public enum AuthenticationType implements Enumerator {
 	public static final int NONE_VALUE = 1;
 
 	/**
+	 * The '<em><b>HMAC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HMAC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HMAC
+	 * @model literal="hmac"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HMAC_VALUE = 2;
+
+	/**
+	 * The '<em><b>MD5</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MD5</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MD5
+	 * @model literal="md5"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MD5_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Authentication Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +128,8 @@ public enum AuthenticationType implements Enumerator {
 		new AuthenticationType[] {
 			BASIC,
 			NONE,
+			HMAC,
+			MD5,
 		};
 
 	/**
@@ -134,6 +182,8 @@ public enum AuthenticationType implements Enumerator {
 		switch (value) {
 			case BASIC_VALUE: return BASIC;
 			case NONE_VALUE: return NONE;
+			case HMAC_VALUE: return HMAC;
+			case MD5_VALUE: return MD5;
 		}
 		return null;
 	}

@@ -43,6 +43,8 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="omadmsimulation.ecore#//AuthenticationType">
       <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/BASIC"/>
       <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/HMAC"/>
+      <genEnumLiterals ecoreEnumLiteral="omadmsimulation.ecore#//AuthenticationType/MD5"/>
     </genEnums>
     <genClasses ecoreClass="omadmsimulation.ecore#//OMADMSimulation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference omadmsimulation.ecore#//OMADMSimulation/device"/>

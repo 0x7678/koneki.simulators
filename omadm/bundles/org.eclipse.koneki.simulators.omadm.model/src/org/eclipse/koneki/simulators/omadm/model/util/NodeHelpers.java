@@ -416,6 +416,7 @@ public class NodeHelpers {
 		Node DMAccNode = NodeHelpers.initNode("DMAcc", root);
 		NodeHelpers.initLeaf("ServerID", "text/plain", "", NodeFormat.CHR, DMAccNode);
 		NodeHelpers.initLeaf("AppID", "text/plain", "", NodeFormat.CHR, DMAccNode);
+		NodeHelpers.initLeaf("AuthPref", "text/plain", "BASIC", NodeFormat.CHR, DMAccNode);
 
 		Node AppAuthNode = NodeHelpers.initNode("AppAuth", DMAccNode);
 		Node DefaultAuthNode = NodeHelpers.initNode("Default", AppAuthNode);
