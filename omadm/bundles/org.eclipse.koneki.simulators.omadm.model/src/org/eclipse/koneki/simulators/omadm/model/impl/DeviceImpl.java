@@ -489,12 +489,12 @@ public class DeviceImpl extends EObjectImpl implements Device {
 				eNotify(new ENotificationImpl(this, Notification.SET, OMADMSimulatorPackage.DEVICE__AUTHENTICATION, oldAuthentication,
 						newAuthentication));
 		} else {
-			authNode.setData(AuthenticationType.BASIC.getName());
-			authentication = AuthenticationType.BASIC;
+			authNode.setData(AuthenticationType.NONE.getName());
+			authentication = AuthenticationType.NONE;
 
 			if (eNotificationRequired()) {
 				eNotify(new ENotificationImpl(this, Notification.SET, OMADMSimulatorPackage.DEVICE__AUTHENTICATION, oldAuthentication,
-						AuthenticationType.BASIC));
+						AuthenticationType.NONE));
 			}
 		}
 	}

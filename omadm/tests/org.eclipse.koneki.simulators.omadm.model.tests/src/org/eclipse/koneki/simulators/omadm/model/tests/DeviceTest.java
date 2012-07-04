@@ -233,8 +233,8 @@ public class DeviceTest extends TestCase {
 		}
 
 		Map<String, AuthenticationType> tests = new HashMap<String, AuthenticationType>();
-		tests.put("Foo", AuthenticationType.BASIC);
-		tests.put("", AuthenticationType.BASIC);
+		tests.put("Foo", AuthenticationType.NONE);
+		tests.put("", AuthenticationType.NONE);
 
 		for (Map.Entry<String, AuthenticationType> t : tests.entrySet()) {
 			testedNode.setData(t.getKey());

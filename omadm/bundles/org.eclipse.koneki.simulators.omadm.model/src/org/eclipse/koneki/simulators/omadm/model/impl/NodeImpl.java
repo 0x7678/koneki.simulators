@@ -488,6 +488,7 @@ public class NodeImpl extends EObjectImpl implements Node {
 					device.setAuthentication(auth);
 				} catch (Exception e) {
 					// The authentication type doesn't exist for the value of newData
+					device.setAuthentication(AuthenticationType.NONE);
 				}
 			} else if (NodeHelpers.findFirstNode(NodeHelpers.getNode(getRoot(), "./DMAcc/AppAddr"), "AddrType") == this) {
 
