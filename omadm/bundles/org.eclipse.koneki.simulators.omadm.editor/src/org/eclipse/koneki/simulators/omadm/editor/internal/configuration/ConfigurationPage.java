@@ -72,10 +72,15 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 			public Object convert(Object value) {
 				Device device = editor.getOMADMSimulation().getDevice();
 				AuthenticationType auth = AuthenticationType.get(value.toString());
-				device.setAuthentication(auth);
+
+				if (auth != device.getAuthentication()) {
+					device.setAuthentication(auth);
+				}
 
 				Node authPref = NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), "./DMAcc"), "AuthPref");
-				authPref.setData(auth.getName());
+				if (!authPref.getData().equals(auth.getName())) {
+					authPref.setData(auth.getName());
+				}
 
 				return auth;
 			}
@@ -87,10 +92,16 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 			public Object convert(Object value) {
 
 				Device device = editor.getOMADMSimulation().getDevice();
-				AuthenticationType auth = device.getAuthentication();
-				authenticationType.setSelection(new StructuredSelection(auth));
+				AuthenticationType deviceAuth = device.getAuthentication();
 
-				return auth;
+				AuthenticationType newAuth = AuthenticationType.get(value.toString());
+
+				if (deviceAuth.getValue() != newAuth.getValue()) {
+					authenticationType.setSelection(new StructuredSelection(newAuth));
+				}
+
+				return newAuth;
+
 			}
 
 		};
@@ -167,7 +178,8 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 		authenticationType = toolkit.createTitleLabelAndComboViewer(serverSettingsComposite, Messages.ConfigurationPage_AuthenticationType,
 				SWT.DEFAULT);
 		authenticationType.add(AuthenticationType.values());
-		authenticationType.setSelection(new StructuredSelection(AuthenticationType.NONE));
+
+		authenticationType.setSelection(new StructuredSelection(editor.getOMADMSimulation().getDevice().getAuthentication()));
 		GridDataFactory.fillDefaults().grab(false, false).span(0, 0).applyTo(authenticationType.getControl());
 
 		// The association button
