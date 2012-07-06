@@ -77,7 +77,7 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 					device.setAuthentication(auth);
 				}
 
-				Node authPref = NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), "./DMAcc"), "AuthPref");
+				Node authPref = NodeHelpers.findFirstNode(NodeHelpers.getNode(device.getTree(), "./DMAcc"), "AuthPref"); //$NON-NLS-1$ //$NON-NLS-2$
 				if (!authPref.getData().equals(auth.getName())) {
 					authPref.setData(auth.getName());
 				}
@@ -127,6 +127,9 @@ public class ConfigurationPage extends AbstractEmfFormPage {
 		bindingContext.bindValue(WidgetProperties.text(SWT.Modify).observe(this.deviceIdText), EMFEditObservables.observeDetailValue(
 				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.DEVICE__DEVICE_ID));
 
+		/*
+		 * TODO improve the binding with the content provider of the combobox
+		 */
 		// AuthenticationType
 		bindingContext.bindValue(WidgetProperties.selection().observe(this.authenticationType.getCombo()), EMFEditObservables.observeDetailValue(
 				Realm.getDefault(), editingDomain, deviceObservable, OMADMSimulatorPackage.Literals.DEVICE__AUTHENTICATION), targetToModel,
