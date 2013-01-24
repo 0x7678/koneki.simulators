@@ -405,7 +405,7 @@ public class NodeHelpers {
 		NodeHelpers.initLeaf("SwV", "text/plain", "", NodeFormat.CHR, devDetailNode);
 		NodeHelpers.initLeaf("HwV", "text/plain", "", NodeFormat.CHR, devDetailNode);
 		NodeHelpers.initLeaf("OEM", "text/plain", "", NodeFormat.CHR, devDetailNode);
-		NodeHelpers.initLeaf("lrgObj", "text/plain", "false", NodeFormat.BOOL, devDetailNode);
+		NodeHelpers.initLeaf("LrgObj", "text/plain", "false", NodeFormat.BOOL, devDetailNode);
 		NodeHelpers.initLeaf("DevTyp", "text/plain", "", NodeFormat.CHR, devDetailNode);
 
 		Node URINode = NodeHelpers.initNode("URI", devDetailNode);
